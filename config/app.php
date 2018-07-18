@@ -165,7 +165,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         JeroenNoten\LaravelAdminLte\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
-        
+        Serwer\Sms\SmsServiceProvider::class,
       
         
 
@@ -181,8 +181,15 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+       
 
     ],
+    'sms'=>[
+			'username' => 'webapi_siba2',
+			'password' => 'Sebastian2!',
+			'api_url'  => 'https://api2.serwersms.pl/',
+			'format'   => 'json'
+		],
 
     /*
     |--------------------------------------------------------------------------

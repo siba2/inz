@@ -47,6 +47,8 @@ Route::post('/tariffs/update', 'Tariffs\TariffsController@update')->name('tariff
 
 Route::get('/smsapi', 'Sms\SmsApiController@index')->name('smsapi');
 
+Route::get('/serwersms', 'Sms\SerwersmsController@index')->name('serwersms');
+
 Route::get('/employees', 'Employees\EmployeesController@index')->name('employees');
 Route::get('/employees/create', 'Employees\EmployeesController@create')->name('employees.create');
 Route::get('/employees/show/{id}', 'Employees\EmployeesController@show')->name('employees.show');

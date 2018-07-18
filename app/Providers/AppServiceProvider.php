@@ -68,7 +68,12 @@ class AppServiceProvider extends ServiceProvider {
                 'icon' => 'calendar',
                 'submenu' => [
                     [
-                        'text' => trans('t_menu.text_smaapi'),
+                        'text' => trans('t_menu.text_serwersms'),
+                        'icon' => '',
+                        'url' => '/serwersms',
+                    ],
+                    [
+                        'text' => trans('t_menu.text_smsapi'),
                         'icon' => '',
                         'url' => '/smsapi',
                     ],
