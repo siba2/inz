@@ -15,7 +15,7 @@ class SmsApiController extends Controller {
     }
 
     public function index() {
-       // $this->sms();
+     //   $this->sms();
 
         return view('sms/smsapi/index');
     }
@@ -23,7 +23,7 @@ class SmsApiController extends Controller {
     public function sms() {
         require_once base_path() . '/vendor/autoload.php';
 
-        $client = Client::createFromToken('VIrst5p7XYDX6t76hJKHYpBZNcZohBNebTd1CPHR');
+        $client = Client::createFromToken(env('SMSAPI_TOKEN'));
 
         $smsapi = new SmsFactory;
         $smsapi->setClient($client);

@@ -185,8 +185,8 @@ return [
 
     ],
     'sms'=>[
-			'username' => 'webapi_siba2',
-			'password' => 'Sebastian2!',
+			'username' => env('SERWERSMS_USER'),
+			'password' => env('SERWERSMS_PASSWORD'),
 			'api_url'  => 'http://api2.serwersms.pl/',
 			'format'   => 'json'
 		],
