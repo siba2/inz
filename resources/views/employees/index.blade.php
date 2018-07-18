@@ -29,16 +29,7 @@
 </div>
 <!-- ./row -->
 @stop
-
-@section('css')
-<link rel="stylesheet" href="../../../node_modules/datatables.net-bs/css/dataTables.bootstrap.css">
-@stop
-
 @section('js')
-<script src="./js/app.js"></script>
-<script src="../../node_modules/datatables.net/js/jquery.dataTables.js"></script>
-<script src="../../node_modules/datatables.net-bs/js/dataTables.bootstrap.js"></script>
-
 <script type="text/javascript">
 $(document).ready(function () {
     $('#table').DataTable({
