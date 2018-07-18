@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Sms;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use \SMS;
+use App\SerwerSms;
+use Yajra\Datatables\Datatables;
+use App\Http\Requests\StoreSerwersms;
 
 class SerwersmsController extends Controller {
 
@@ -13,65 +16,77 @@ class SerwersmsController extends Controller {
     }
 
     public function index() {
-        $this->sendSMStest();
-        // $this->responseSMS();
-
         return view('sms/serwersms/index');
     }
 
-    private function sendSMStest() {
+    public function create() {
+        return view('sms/serwersms/create');
+    }
+
+    public function info() {
+        return view('sms/serwersms/info');
+    }
+
+    public function store(StoreSerwersms $request) {
         try {
 
             $serwersms = new SMS;
 
             $result = $serwersms->messages->sendSms(
                     array(
-                '+48506130288'
-                    ), 'Seba', 'TEST', array(
-                'test' => false,
+                '+48' . $request->phone
+                    ), $request->text, 'TEST', array(
                 'details' => true,
                     )
             );
 
-            echo 'Skolejkowano: ' . $result->queued . '<br />';
-            echo 'Niewysłano: ' . $result->unsent . '<br />';
-
             foreach ($result->items as $sms) {
 
-                echo 'ID: ' . $sms->id . '<br />';
-                echo 'NUMER: ' . $sms->phone . '<br />';
-                echo 'STATUS: ' . $sms->status . '<br />';
-                echo 'CZĘŚCI: ' . $sms->parts . '<br />';
-                echo 'WIADOMOŚĆ: ' . $sms->text . '<br />';
+                $model = new SerwerSms;
+                $model->sms_id = $sms->id;
+                $model->phone = $sms->phone;
+                $model->text = $sms->text;
+                $model->save();
             }
         } catch (Exception $e) {
-            echo 'ERROR: ' . $e->getMessage();
+            return redirect()->to('serwersms');
         }
+
+        return redirect()->to('serwersms');
     }
 
-    private function responseSMS() {
-        try {
+    public function delete($id) {
+        $model = SerwerSms::find($id);
+        $model->delete();
 
-            $serwersms = new \SMS;
+        return redirect()->to('serwersms');
+    }
 
-            // Get messages reports
-            $result = $serwersms->messages->reports(array('id' => array('ef4563d876')));
+    public function getAll() {
+        return Datatables::of(SerwerSms::select('id', 'sms_id', 'phone', 'text')->get())
+                        ->addColumn('status', function ($sms) {
+                            try {
 
-            foreach ($result->items as $sms) {
+                                $serwersms = new \SMS;
+                                $result = $serwersms->messages->reports(array('id' => array($sms->sms_id)));
 
-                echo 'ID: ' . $sms->id . '<br />';
-                echo 'NUMER: ' . $sms->phone . '<br />';
-                echo 'STATUS: ' . $sms->status . '<br />';
-                echo 'SKOLEJKOWANO: ' . $sms->queued . '<br />';
-                echo 'WYSŁANO: ' . $sms->sent . '<br />';
-                echo 'DORĘCZONO: ' . $sms->delivered . '<br />';
-                echo 'NADAWCA: ' . $sms->sender . '<br />';
-                echo 'TYP: ' . $sms->type . '<br />';
-                echo 'WIADOMOŚĆ: ' . $sms->text . '<br />';
-            }
-        } catch (Exception $e) {
-            echo 'ERROR: ' . $e->getMessage();
-        }
+                                foreach ($result->items as $sms) {
+
+                                    return $sms->status;
+                                }
+                            } catch (Exception $e) {
+                                return '';
+                            }
+                        })
+                        ->addColumn('manage', function ($sms) {
+                            $html = '<div class="btn-group">';
+                            $html .= '<button href="/serwersms/delete/' . $sms->id . '" type="button" class="btn btn-danger" onClick="modalConfirm($(this).attr(\'href\'))"><i class="fa fa-remove"></i></button>';
+                            $html .= '</div>';
+
+                            return $html;
+                        })
+                        ->rawColumns(['manage', 'status'])
+                        ->make(true);
     }
 
 }

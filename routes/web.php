@@ -21,7 +21,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/schedule', 'Schedule\ScheduleController@index')->name('schedule');
 Route::get('/schedule/get/all', 'Schedule\ScheduleController@getAll')->name('schedule.get.all');
 
-
 Route::get('/customers', 'Customers\CustomersController@index')->name('customers');
 Route::get('/customers/create', 'Customers\CustomersController@create')->name('customers.create');
 Route::get('/customers/show/{id}', 'Customers\CustomersController@show')->name('customers.show');
@@ -34,7 +33,6 @@ Route::post('/customers/store', 'Customers\CustomersController@store')->name('cu
 Route::post('/customers/update', 'Customers\CustomersController@update')->name('customers.update');
 Route::post('/customers/tariffs/store', 'Customers\CustomersController@tariffsStore')->name('customers.tariffs.store');
 
-
 Route::get('/tariffs', 'Tariffs\TariffsController@index')->name('tariffs');
 Route::get('/tariffs/create', 'Tariffs\TariffsController@create')->name('tariffs.create');
 Route::get('/tariffs/show/{id}', 'Tariffs\TariffsController@show')->name('tariffs.show');
@@ -44,10 +42,14 @@ Route::get('/tariffs/get/all', 'Tariffs\TariffsController@getAll')->name('tariff
 Route::post('/tariffs/store', 'Tariffs\TariffsController@store')->name('tariffs.store');
 Route::post('/tariffs/update', 'Tariffs\TariffsController@update')->name('tariffs.update');
 
-
 Route::get('/smsapi', 'Sms\SmsApiController@index')->name('smsapi');
 
 Route::get('/serwersms', 'Sms\SerwersmsController@index')->name('serwersms');
+Route::get('/serwersms/create', 'Sms\SerwersmsController@create')->name('serwersms.create');
+Route::get('/serwersms/info', 'Sms\SerwersmsController@info')->name('serwersms.info');
+Route::get('/serwersms/delete/{id}', 'Sms\SerwersmsController@delete')->name('serwersms.delete');
+Route::get('/serwersms/get/all', 'Sms\SerwersmsController@getAll')->name('serwersms.get.all');
+Route::post('/serwersms/store', 'Sms\SerwersmsController@store')->name('serwersms.store');
 
 Route::get('/employees', 'Employees\EmployeesController@index')->name('employees');
 Route::get('/employees/create', 'Employees\EmployeesController@create')->name('employees.create');
@@ -57,7 +59,6 @@ Route::get('/employees/delete/{id}', 'Employees\EmployeesController@delete')->na
 Route::get('/employees/get/all', 'Employees\EmployeesController@getAll')->name('employees.get.all');
 Route::post('/employees/store', 'Employees\EmployeesController@store')->name('employees.store');
 Route::post('/employees/update', 'Employees\EmployeesController@update')->name('employees.update');
-
 
 Route::get('/admin', 'Admin\AdminController@index')->name('admin');
 Route::get('/admin/create', 'Admin\AdminController@create')->name('admin.create');
