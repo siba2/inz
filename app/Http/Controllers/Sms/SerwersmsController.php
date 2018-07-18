@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Sms;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use \SMS;
 
 class SerwersmsController extends Controller {
 
@@ -21,13 +22,13 @@ class SerwersmsController extends Controller {
     private function sendSMStest() {
         try {
 
-            $serwersms = new \SMS;
+            $serwersms = new SMS;
 
             $result = $serwersms->messages->sendSms(
                     array(
-                '+48506130288', '506130288'
-                    ), 'asd', 'TEST', array(
-                'test' => true,
+                '+48506130288'
+                    ), 'Seba', 'TEST', array(
+                'test' => false,
                 'details' => true,
                     )
             );
