@@ -133,11 +133,7 @@ class CustomersController extends Controller {
 
     public function iptable($id) {
         $classes = IptablesClasses::select()->get();
-
-        if ($classes == null) {
-            return redirect()->to('customers');
-        }
-
+        $iptables = Iptables::where('id_customer', '=', $id)->first();
         $model = Customers::find($id);
 
         $arrClass = [];
@@ -152,7 +148,14 @@ class CustomersController extends Controller {
             }
         }
 
-        return view('customers/iptable')->with('model', $model)->with('arrClass', $arrClass);
+        if (count($arrClass) == 0) {
+            return redirect()->to('customers');
+        }
+
+        return view('customers/iptable')
+                        ->with('model', $model)
+                        ->with('arrClass', $arrClass)
+                        ->with('iptables', $iptables);
     }
 
     public function iptableStore(Request $request) {

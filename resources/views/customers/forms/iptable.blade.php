@@ -19,17 +19,16 @@
                 <div class="form-group">
                     <label for="ipaddr">{{ __('t_customers.customers.form.label.ipaddr') }}</label>
                     <select type="text" id="ipaddr" name="ipaddr" class="form-control">
-
                     </select>
                 </div>
                 <div class="form-group {{ ($errors->has('mac') ? 'has-error' : '') }}">
                     <label for="mac">{{ __('t_customers.customers.form.label.mac') }}*</label>
-                    <input type="text" id="mac" name="mac" class="form-control" required value="{{ old('mac', (isset($model->mac) ? $model->mac : '')) }}">
+                    <input type="text" id="mac" name="mac" class="form-control" required value="{{ old('mac', (isset($iptables->mac) ? $iptables->mac : '')) }}">
                     @if ($errors->has('mac')) <span class="help-block">{{ $errors->first('mac') }}</span> @endif
                 </div> 
-                 <div class="form-group {{ ($errors->has('comment') ? 'has-error' : '') }}">
+                <div class="form-group {{ ($errors->has('comment') ? 'has-error' : '') }}">
                     <label for="comment">{{ __('t_customers.customers.form.label.comment') }}</label>
-                    <input type="text" id="comment" name="comment" class="form-control"  value="{{ old('comment', (isset($model->comment) ? $model->comment : '')) }}">
+                    <input type="text" id="comment" name="comment" class="form-control"  value="{{ old('comment', (isset($iptables->comment) ? $iptables->comment : '')) }}">
                     @if ($errors->has('comment')) <span class="help-block">{{ $errors->first('comment') }}</span> @endif
                 </div> 
             </div>
@@ -58,11 +57,11 @@
                     idCustomer: idCustomer
                 },
                 success: function (arr) {
-                    
+
                     $('#ipaddr').find('option').remove();
-                    
+
                     $.each(arr, function (index, item) {
-                           
+
                         $('#ipaddr').append(new Option(item, item));
                     });
                 }

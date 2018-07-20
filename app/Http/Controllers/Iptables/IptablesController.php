@@ -47,13 +47,21 @@ class IptablesController extends Controller {
 
     public function getAll() {
         return Datatables::of(IptablesClasses::select('id', 'class')->get())
-                ->editColumn('class',function($iptables){
-                            
+                        ->editColumn('class', function($iptables) {
+
                             return long2ip($iptables->class);
                         })
                         ->addColumn('manage', function ($iptables) {
+
+                            $isUsedInIptables = Iptables::where('id_iptable',$iptables->id)->count();
+
                             $html = '<div class="btn-group">';
-                            $html .= '<button href="/iptables/delete/' . $iptables->id . '" type="button" class="btn btn-danger" onClick="modalConfirm($(this).attr(\'href\'))"><i class="fa fa-remove"></i></button>';
+
+                            if ($isUsedInIptables) {
+                                $html .= '<a href="#" type="button" class="btn btn-danger" disabled><i class="fa fa-remove"></i></a>';
+                            } else {
+                                $html .= '<button href="/iptables/delete/' . $iptables->id . '" type="button" class="btn btn-danger" onClick="modalConfirm($(this).attr(\'href\'))"><i class="fa fa-remove"></i></button>';
+                            }
                             $html .= '</div>';
 
                             return $html;
@@ -64,42 +72,48 @@ class IptablesController extends Controller {
 
     public function node($id) {
         $model = IptablesClasses::find($id);
-        
+
         return view('iptables/node/index')->with('model', $model);
     }
 
     public function nodeCreate($id) {
         $model = IptablesClasses::find($id);
         $ipaddr = substr(long2ip($model->class), 0, -1);
-       
+
         return view('iptables/node/create')->with('model', $model)->with('ipaddr', $ipaddr);
     }
-    
+
     public function nodeStore(StoreIptablesNode $request) {
         $model = $this->nodePrepareDBquery($request, new Iptables);
         $model->save();
 
         return redirect()->to('iptables/node/' . $request->id);
     }
-    
-    public function nodeDelete($id){      
+
+    public function nodeDelete($id) {
         $model = Iptables::find($id);
         $node = $model->id_iptable;
         $model->delete();
-        
-         return redirect()->to('iptables/node/' . $node);
+
+        return redirect()->to('iptables/node/' . $node);
     }
 
     public function nodeGetAll($id) {
-        return Datatables::of(Iptables::select('id', 'ipaddr')->where('id_iptable', $id)->get())
-                        ->editColumn('ipaddr',function($iptables){
-                            
+        return Datatables::of(Iptables::select('id', 'ipaddr', 'id_customer')->where('id_iptable', $id)->get())
+                        ->editColumn('ipaddr', function($iptables) {
+
                             return long2ip($iptables->ipaddr);
                         })
                         ->addColumn('manage', function ($iptables) {
+
                             $html = '<div class="btn-group">';
 
-                            $html .= '<button href="/iptables/node/delete/' . $iptables->id . '" type="button" class="btn btn-danger" onClick="modalConfirm($(this).attr(\'href\'))"><i class="fa fa-remove"></i></button>';
+                            if ($iptables->id_customer != NULL) {
+                                $html .= '<a href="#" type="button" class="btn btn-danger" disabled><i class="fa fa-remove"></i></a>';
+                            } else {
+                                $html .= '<button href="/iptables/node/delete/' . $iptables->id . '" type="button" class="btn btn-danger" onClick="modalConfirm($(this).attr(\'href\'))"><i class="fa fa-remove"></i></button>';
+                            }
+
                             $html .= '</div>';
 
                             return $html;
