@@ -9,19 +9,17 @@
             {{ csrf_field() }}
             <div class="box-body">
                 <div class="form-group">
-                    <label for="">{{ __('t_customers.customers.form.label.') }}</label>
-                    <select type="text" id="" name="" class="form-control">
-                        @foreach($classes as $class)
-                        <option value="{{$class->id}}" >{{$class->class}}</option>
+                    <label for="class">{{ __('t_customers.customers.form.label.class') }}</label>
+                    <select type="text" id="class" name="class" class="form-control">
+                        @foreach($arrClass as $key => $class)
+                        <option value="{{$key}}" >{{$class}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="">{{ __('t_customers.customers.form.label.') }}</label>
-                    <select type="text" id="" name="" class="form-control">
-                        @for ($i = 0; $i < 255; $i++)
-                        <option value="{{$class->id}}" >192.168.{{$class->class}}.{{$i}}</option>
-                        @endfor
+                    <label for="ipaddr">{{ __('t_customers.customers.form.label.ipaddr') }}</label>
+                    <select type="text" id="ipaddr" name="ipaddr" class="form-control">
+
                     </select>
                 </div>
                 <div class="form-group {{ ($errors->has('mac') ? 'has-error' : '') }}">
@@ -40,12 +38,38 @@
     </div>
 </form>
 @section('js')
-<script src="../../node_modules/inputmask/dist/jquery.inputmask.bundle.js"></script>
-<script src="../../node_modules/inputmask/dist/inputmask/inputmask.extensions.js"></script>
-
 <script type="text/javascript">
-$(function () {
-    $('#mac').inputmask("mac");
-});
+    $(document).ready(function () {
+        $('#mac').inputmask("mac");
+        $('#class').change(function () {
+
+            var ip = $('#class').val();
+            var idCustomer = $('#id').val();
+            $.ajax({
+                type: "post",
+                url: '/customers/listip',
+                data: {
+                    ip: ip,
+                    idCustomer: idCustomer
+                },
+                success: function (arr) {
+                    
+                    $('#ipaddr').find('option').remove();
+                    
+                    $.each(arr, function (index, item) {
+                           
+                        $('#ipaddr').append(new Option(item, index));
+                    });
+                }
+            });
+        });
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $('#class').change();
+    });
 </script>
 @stop

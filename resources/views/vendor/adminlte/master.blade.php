@@ -53,7 +53,8 @@
         <script src="{{ asset('node_modules/datatables.net/js/jquery.dataTables.js') }}"></script>
         <script src="{{ asset('node_modules/datatables.net-bs/js/dataTables.bootstrap.js') }}"></script>
         <script src="{{ asset('node_modules/multiselect-two-sides/dist/js/multiselect.js') }}"></script>
-       
+        <script src="{{ asset('node_modules/inputmask/dist/jquery.inputmask.bundle.js') }}"></script>
+        <script src="{{ asset('node_modules/inputmask/dist/inputmask/inputmask.extensions.js') }}"></script>
 
         @if(config('adminlte.plugins.select2'))
         <!-- Select2 -->

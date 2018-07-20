@@ -21,7 +21,7 @@
             <div class="box-header">
             </div>
             <div class="box-body">
-                @include('iptables/forms/create_class')
+                @include('iptables/forms/create')
             </div>
             <!-- ./box-body -->
         </div>

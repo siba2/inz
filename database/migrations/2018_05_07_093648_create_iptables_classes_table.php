@@ -9,7 +9,7 @@ class CreateIptablesClassesTable extends Migration
    public function up() {
         Schema::connection('mysql_manager')->create('iptables_classes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('class');         
+            $table->bigInteger('class');         
         });
     }
 

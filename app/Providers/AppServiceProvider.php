@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
+use App\IptablesClasses;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -39,12 +40,28 @@ class AppServiceProvider extends ServiceProvider {
                         'icon' => '',
                         'url' => '/customers',
                     ],
-                    [
-                        'text' => trans('t_menu.text_iptables'),
-                        'icon' => '',
-                        'url' => '/iptables',
-                    ],
                 ]
+            ]);
+        });
+        $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
+            $event->menu->add(trans('t_menu.header.text_iptables'));
+            $arr[] = [
+                'text' => trans('t_menu.header.text_iptables_class'),
+                'icon' => '',
+                'url' => '/iptables',
+            ];
+            foreach (IptablesClasses::all() as $iptables) {
+                $arr[] = [
+                    'text' => trans(long2ip($iptables->class)),
+                    'icon' => '',
+                    'url' => '/iptables/node/' . $iptables->id,
+                ];
+            }
+
+            $event->menu->add([
+                'text' => trans('t_menu.header.text_iptables_sub'),
+                'icon' => '',
+                'submenu' => $arr,
             ]);
         });
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
@@ -80,7 +97,7 @@ class AppServiceProvider extends ServiceProvider {
                 ]
             ]);
         });
-         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
+        $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
             $event->menu->add(trans('t_menu.header.text_employees'));
             $event->menu->add([
                 'text' => trans('t_menu.header.text_employees_sub'),

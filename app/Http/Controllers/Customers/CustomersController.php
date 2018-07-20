@@ -9,6 +9,7 @@ use App\Customers;
 use App\Tariffs;
 use App\TariffsCustomer;
 use App\IptablesClasses;
+use App\Iptables;
 
 class CustomersController extends Controller {
 
@@ -124,8 +125,26 @@ class CustomersController extends Controller {
     public function iptable($id) {
         $model = Customers::find($id);
         $classes = IptablesClasses::select()->get();
+        $arrClass = [];
+        foreach ($classes as $class) {
 
-        return view('customers/iptable')->with('model', $model)->with('classes', $classes);
+            if(Iptables::where('id_iptable',$class->id)->count()){
+            $arrClass[$class->id] = long2ip($class->class);
+        }
+        
+            }
+
+        return view('customers/iptable')->with('model', $model)->with('arrClass', $arrClass);
+    }
+
+    public function listIp(Request $request) {
+        $listIp = Iptables::select('ipaddr')->where('id_iptable', $request->ip)->where('id_customer', NULL)->orwhere('id_customer', $request->idCustomer)->get();
+        $arr = [];
+        foreach ($listIp as $ip) {
+            array_push($arr, long2ip($ip->ipaddr));
+        }
+
+        return $arr;
     }
 
 }

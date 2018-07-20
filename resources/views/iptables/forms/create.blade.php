@@ -1,4 +1,4 @@
-<form method="post"  action="/iptables/class/store" >
+<form method="post"  action="/iptables/store" >
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
@@ -22,3 +22,10 @@
         <!-- /.box -->
     </div>
 </form>
+@section('js')
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#class').inputmask("9{1,3}.9{1,3}.9{1,3}.0");
+    }); 
+</script>
+@stop
