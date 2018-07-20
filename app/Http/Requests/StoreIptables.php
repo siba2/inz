@@ -24,8 +24,13 @@ class StoreIptables extends FormRequest
     }
 
     public function rules() {
+         \Validator::extend('ipaddr_unique', function ($attribute, $value, $parameters, $validator ) {
+           $class = $validator->getData()['class'];
+
+            return !(\App\IptablesClasses::where('class', '=', ip2long($class))->count() > 0);
+        }, trans('validation.unique_ipaddr'));
         return [
-            'class' => 'required|ipv4',          
+            'class' => 'required|ipv4|ipaddr_unique',          
         ];
     }
 }

@@ -10,6 +10,8 @@ use App\Tariffs;
 use App\TariffsCustomer;
 use App\IptablesClasses;
 use App\Iptables;
+use App\Cash;
+use DB;
 
 class CustomersController extends Controller {
 
@@ -103,6 +105,7 @@ class CustomersController extends Controller {
                                         <a href="/customers/show/' . $id . '" type="button" class="btn btn-default"><i class="fa fa-search"></i></a>
                                         <a href="/customers/edit/' . $id . '" type="button" class="btn btn-default"><i class="fa fa-edit"></i></a>
                                         <a href="/customers/tariffs/' . $id . '" type="button" class="btn btn-default"><i class="fa fa-asterisk"></i></a>
+                                        <a href="/customers/cash/' . $id . '" type="button" class="btn btn-default"><i class="fa fa-money"></i></a>
                                         <a href="/customers/iptable/' . $id . '" type="button" class="btn btn-default"><i class="fa fa-server"></i></a>';
 
                             if ($isUsedInTariffs) {
@@ -133,10 +136,17 @@ class CustomersController extends Controller {
 
     public function iptable($id) {
         $classes = IptablesClasses::select()->get();
-        $iptables = Iptables::where('id_customer', '=', $id)->first();
+        $iptables = Iptables::where('id_customer', '=', $id);
         $model = Customers::find($id);
-        $usedClass = $iptables->id_iptable;
-        $usedIp = long2ip($iptables->ipaddr);
+        $usedClass = '';
+        $usedIp = '';
+
+        if ($iptables->count()) {
+            $usedClass = $iptables->first()->id_iptable;
+        }
+        if ($iptables->count()) {
+            $usedIp = long2ip($iptables->first()->ipaddr);
+        }
 
         $arrClass = [];
         foreach ($classes as $class) {
@@ -157,7 +167,7 @@ class CustomersController extends Controller {
         return view('customers/iptable')
                         ->with('model', $model)
                         ->with('arrClass', $arrClass)
-                        ->with('iptables', $iptables)
+                        ->with('iptables', $iptables->first())
                         ->with('usedClass', $usedClass)
                         ->with('usedIp', $usedIp);
     }
@@ -194,6 +204,53 @@ class CustomersController extends Controller {
         }
 
         return $arr;
+    }
+
+    public function cash($id) {
+        $model = Customers::find($id);
+        $cash = Cash::where('id_customer', $id)->get();
+
+        return view('customers/cash/index')->with('model', $model)->with('cash', $cash);
+    }
+
+    public function cashCreate($id) {
+        $model = Customers::find($id);
+
+        return view('customers/cash/create')->with('model', $model);
+    }
+
+    public function cashGetAll($id) {
+        return Datatables::of(Cash::select()->where('id_customer', $id)->get())
+                        ->editColumn('id_tariff', function($cash) {
+                            return Tariffs::find($cash->id_tariff)->name;
+                        })
+                        ->editColumn('value', function($cash) {
+
+                            if ($cash->value > 0) {
+                                $html = '<b style="color: green;">+' . $cash->value . '</b>';
+                            } else {
+                                $html = '<b style="color: red;">' . $cash->value . '</b>';
+                            }
+
+                            return $html;
+                        })
+                        ->addColumn('balance', function($cash) {
+
+                            $balance = Cash::select(DB::raw('SUM(value) AS balance'))
+                                    ->where('id_customer', $cash->id_customer)
+                                    ->where('date', '<=', $cash->date)
+                                    ->first()->balance;
+
+                            if ($balance > 0) {
+                                $html = '<b style="color: green;">+' . $balance . '</b>';
+                            } else {
+                                $html = '<b style="color: red;">' . $balance . '</b>';
+                            }
+
+                            return $html;
+                        })
+                        ->rawColumns(['balance', 'value'])
+                        ->make(true);
     }
 
 }

@@ -29,6 +29,9 @@ Route::get('/customers/tariffs/{id}', 'Customers\CustomersController@tariffs')->
 Route::get('/customers/iptable/{id}', 'Customers\CustomersController@iptable')->name('customers.iptable');
 Route::get('/customers/delete/{id}', 'Customers\CustomersController@delete')->name('customers.delete');
 Route::get('/customers/get/all', 'Customers\CustomersController@getAll')->name('customers.get.all');
+Route::get('/customers/cash/{id}', 'Customers\CustomersController@cash')->name('customers.cash');
+Route::get('/customers/cash/create/{id}', 'Customers\CustomersController@cashCreate')->name('customers.cash.create');
+Route::get('/customers/cash/get/all/{id}', 'Customers\CustomersController@cashGetAll')->name('iptables.cash.get.all');
 Route::post('/customers/store', 'Customers\CustomersController@store')->name('customers.store');
 Route::post('/customers/update', 'Customers\CustomersController@update')->name('customers.update');
 Route::post('/customers/tariffs/store', 'Customers\CustomersController@tariffsStore')->name('customers.tariffs.store');

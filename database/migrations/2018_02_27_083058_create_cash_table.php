@@ -10,6 +10,7 @@ class CreateCashTable extends Migration {
         Schema::connection('mysql_manager')->create('cash', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('id_customer');
+            $table->integer('id_tariff');
             $table->string('comment');
             $table->string('value');
             $table->date('date');

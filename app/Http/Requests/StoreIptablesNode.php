@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Requests;
-
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreIptablesNode extends FormRequest
@@ -23,9 +23,15 @@ class StoreIptablesNode extends FormRequest
         ];
     }
 
-    public function rules() {
+    public function rules(Request $request) {
+        \Validator::extend('ipaddr_unique', function ($attribute, $value, $parameters, $validator ) {
+           $ipaddr = $validator->getData()['ipaddr'];
+
+            return !(\App\Iptables::where('ipaddr', '=', ip2long($ipaddr))->count() > 0);
+        }, trans('validation.unique_ipaddr'));
+        
         return [
-            'ipaddr' => 'required|ipv4',          
+            'ipaddr' => 'required|ipv4|ipaddr_unique',          
         ];
     }
 }
