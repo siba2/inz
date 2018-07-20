@@ -16,7 +16,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                {!! Html::decode(Html::linkRoute('iptables.node.create', '<button type="button" class="btn btn-flat btn-primary">'.__("t_iptables.node.index.table.button.add").'</button>', [ $node_id ])) !!}
+                {!! Html::decode(Html::linkRoute('iptables.node.create', '<button type="button" class="btn btn-flat btn-primary">'.__("t_iptables.node.index.table.button.add").'</button>', [ $model->id ])) !!}
             </div>         
             <div class="box-body">
                 <table id="table" class="table table-bordered table-hover"></table>
@@ -35,7 +35,7 @@
             },
             processing: true,
             serverSide: true,
-            ajax: '/iptables/node/get/all/{{ $node_id }}',
+            ajax: '/iptables/node/get/all/{{ $model->id }}',
             columns: [
                 {title: "{{ __('t_iptables.iptables.node.table.th.ipaddr') }}", data: 'ipaddr', name: 'ipaddr'},
                 {title: "", data: 'manage', name: 'manage', orderable: false, searchable: false}

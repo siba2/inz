@@ -33,6 +33,7 @@ Route::post('/customers/store', 'Customers\CustomersController@store')->name('cu
 Route::post('/customers/update', 'Customers\CustomersController@update')->name('customers.update');
 Route::post('/customers/tariffs/store', 'Customers\CustomersController@tariffsStore')->name('customers.tariffs.store');
 Route::post('/customers/listip', 'Customers\CustomersController@listIp')->name('customers.listip');
+Route::post('/customers/iptable/store', 'Customers\CustomersController@iptableStore')->name('customers.iptable.store');
 
 Route::get('/tariffs', 'Tariffs\TariffsController@index')->name('tariffs');
 Route::get('/tariffs/create', 'Tariffs\TariffsController@create')->name('tariffs.create');
@@ -76,6 +77,7 @@ Route::get('/iptables/delete/{id}', 'Iptables\IptablesController@delete')->name(
 Route::get('/iptables/get/all', 'Iptables\IptablesController@getAll')->name('iptables.get.all');
 Route::get('/iptables/node/{id}', 'Iptables\IptablesController@node')->name('iptables.node');
 Route::get('/iptables/node/create/{id}', 'Iptables\IptablesController@nodeCreate')->name('iptables.node.create');
+Route::get('/iptables/node/delete/{id}', 'Iptables\IptablesController@nodeDelete')->name('iptables.node.delete');
 Route::get('/iptables/node/get/all/{id}', 'Iptables\IptablesController@nodeGetAll')->name('iptables.node.get.all');
 Route::post('/iptables/store', 'Iptables\IptablesController@store')->name('iptables.store');
 Route::post('/iptables/node/store', 'Iptables\IptablesController@nodeStore')->name('iptables.node.store');

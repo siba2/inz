@@ -27,6 +27,11 @@
                     <input type="text" id="mac" name="mac" class="form-control" required value="{{ old('mac', (isset($model->mac) ? $model->mac : '')) }}">
                     @if ($errors->has('mac')) <span class="help-block">{{ $errors->first('mac') }}</span> @endif
                 </div> 
+                 <div class="form-group {{ ($errors->has('comment') ? 'has-error' : '') }}">
+                    <label for="comment">{{ __('t_customers.customers.form.label.comment') }}</label>
+                    <input type="text" id="comment" name="comment" class="form-control"  value="{{ old('comment', (isset($model->comment) ? $model->comment : '')) }}">
+                    @if ($errors->has('comment')) <span class="help-block">{{ $errors->first('comment') }}</span> @endif
+                </div> 
             </div>
             <!-- ./box-body -->
             <div class="box-footer">
@@ -58,7 +63,7 @@
                     
                     $.each(arr, function (index, item) {
                            
-                        $('#ipaddr').append(new Option(item, index));
+                        $('#ipaddr').append(new Option(item, item));
                     });
                 }
             });

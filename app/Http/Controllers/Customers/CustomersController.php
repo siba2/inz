@@ -82,6 +82,15 @@ class CustomersController extends Controller {
         $model = Customers::find($id);
         $model->delete();
 
+        $iptables = Iptables::where('id_customer', $id)->first();
+
+        if ($iptables) {
+            $iptables->id_customer = null;
+            $iptables->mac = null;
+            $iptables->comment = null;
+            $iptables->save();
+        }
+
         return redirect()->to('customers');
     }
 
@@ -123,22 +132,55 @@ class CustomersController extends Controller {
     }
 
     public function iptable($id) {
-        $model = Customers::find($id);
         $classes = IptablesClasses::select()->get();
+
+        if ($classes == null) {
+            return redirect()->to('customers');
+        }
+
+        $model = Customers::find($id);
+
         $arrClass = [];
         foreach ($classes as $class) {
 
-            if(Iptables::where('id_iptable',$class->id)->count()){
-            $arrClass[$class->id] = long2ip($class->class);
-        }
-        
+            if (Iptables::where('id_iptable', $class->id)
+                            ->where(function ($query) use ($id) {
+                                $query->where('id_customer', '=', NULL)
+                                ->orWhere('id_customer', '=', $id);
+                            })->count()) {
+                $arrClass[$class->id] = long2ip($class->class);
             }
+        }
 
         return view('customers/iptable')->with('model', $model)->with('arrClass', $arrClass);
     }
 
+    public function iptableStore(Request $request) {
+        $oldModel = Iptables::where('id_customer', $request->id)->first();
+
+        if ($oldModel) {
+            $oldModel->id_customer = null;
+            $oldModel->mac = null;
+            $oldModel->comment = null;
+            $oldModel->save();
+        }
+
+        $model = Iptables::where('ipaddr', ip2long($request->ipaddr))->first();
+        $model->id_customer = $request->id;
+        $model->mac = $request->mac;
+        $model->comment = $request->comment;
+        $model->save();
+
+        return redirect()->to('customers');
+    }
+
     public function listIp(Request $request) {
-        $listIp = Iptables::select('ipaddr')->where('id_iptable', $request->ip)->where('id_customer', NULL)->orwhere('id_customer', $request->idCustomer)->get();
+        $listIp = Iptables::select('ipaddr')->where('id_iptable', $request->ip)
+                        ->where(function ($query) use ($request) {
+                            $query->where('id_customer', '=', NULL)
+                            ->orWhere('id_customer', '=', $request->idCustomer);
+                        })->get();
+
         $arr = [];
         foreach ($listIp as $ip) {
             array_push($arr, long2ip($ip->ipaddr));

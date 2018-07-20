@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Iptables;
 use App\IptablesClasses;
 use Yajra\Datatables\Datatables;
+use App\Http\Requests\StoreIptables;
+use App\Http\Requests\StoreIptablesNode;
 
 class IptablesController extends Controller {
 
@@ -22,7 +24,7 @@ class IptablesController extends Controller {
         return view('iptables/create');
     }
 
-    public function store(Request $request) {
+    public function store(StoreIptables $request) {
 
         $model = $this->prepareDBquery($request, new IptablesClasses);
         $model->save();
@@ -45,6 +47,10 @@ class IptablesController extends Controller {
 
     public function getAll() {
         return Datatables::of(IptablesClasses::select('id', 'class')->get())
+                ->editColumn('class',function($iptables){
+                            
+                            return long2ip($iptables->class);
+                        })
                         ->addColumn('manage', function ($iptables) {
                             $html = '<div class="btn-group">';
                             $html .= '<button href="/iptables/delete/' . $iptables->id . '" type="button" class="btn btn-danger" onClick="modalConfirm($(this).attr(\'href\'))"><i class="fa fa-remove"></i></button>';
@@ -57,32 +63,49 @@ class IptablesController extends Controller {
     }
 
     public function node($id) {
-        return view('iptables/node/index')->with('node_id', $id);
+        $model = IptablesClasses::find($id);
+        
+        return view('iptables/node/index')->with('model', $model);
     }
 
     public function nodeCreate($id) {
-        return view('iptables/node/create')->with('id', $id);
+        $model = IptablesClasses::find($id);
+        $ipaddr = substr(long2ip($model->class), 0, -1);
+       
+        return view('iptables/node/create')->with('model', $model)->with('ipaddr', $ipaddr);
+    }
+    
+    public function nodeStore(StoreIptablesNode $request) {
+        $model = $this->nodePrepareDBquery($request, new Iptables);
+        $model->save();
+
+        return redirect()->to('iptables/node/' . $request->id);
+    }
+    
+    public function nodeDelete($id){      
+        $model = Iptables::find($id);
+        $node = $model->id_iptable;
+        $model->delete();
+        
+         return redirect()->to('iptables/node/' . $node);
     }
 
     public function nodeGetAll($id) {
         return Datatables::of(Iptables::select('id', 'ipaddr')->where('id_iptable', $id)->get())
+                        ->editColumn('ipaddr',function($iptables){
+                            
+                            return long2ip($iptables->ipaddr);
+                        })
                         ->addColumn('manage', function ($iptables) {
                             $html = '<div class="btn-group">';
 
-                            $html .= '<button href="/iptables/delete/' . $iptables->id . '" type="button" class="btn btn-danger" onClick="modalConfirm($(this).attr(\'href\'))"><i class="fa fa-remove"></i></button>';
+                            $html .= '<button href="/iptables/node/delete/' . $iptables->id . '" type="button" class="btn btn-danger" onClick="modalConfirm($(this).attr(\'href\'))"><i class="fa fa-remove"></i></button>';
                             $html .= '</div>';
 
                             return $html;
                         })
                         ->rawColumns(['manage'])
                         ->make(true);
-    }
-
-    public function nodeStore(Request $request) {
-        $model = $this->nodePrepareDBquery($request, new Iptables);
-        $model->save();
-
-        return redirect()->to('iptables/node/' . $request->id);
     }
 
     public function nodePrepareDBquery(Request $request, Iptables $model) {
