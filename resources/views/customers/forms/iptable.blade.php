@@ -12,7 +12,7 @@
                     <label for="class">{{ __('t_customers.customers.form.label.class') }}</label>
                     <select type="text" id="class" name="class" class="form-control">
                         @foreach($arrClass as $key => $class)
-                        <option value="{{$key}}" >{{$class}}</option>
+                        <option value="{{$key}}" @if($usedClass == $key) selected @endif >{{$class}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -62,7 +62,11 @@
 
                     $.each(arr, function (index, item) {
 
-                        $('#ipaddr').append(new Option(item, item));
+                        var newOption = new Option(item, item);
+                        if(item === '{{$usedIp}}'){
+                            newOption.setAttribute('selected', true);
+                        }
+                        $('#ipaddr').append(newOption);
                     });
                 }
             });

@@ -135,6 +135,8 @@ class CustomersController extends Controller {
         $classes = IptablesClasses::select()->get();
         $iptables = Iptables::where('id_customer', '=', $id)->first();
         $model = Customers::find($id);
+        $usedClass = $iptables->id_iptable;
+        $usedIp = long2ip($iptables->ipaddr);
 
         $arrClass = [];
         foreach ($classes as $class) {
@@ -155,7 +157,9 @@ class CustomersController extends Controller {
         return view('customers/iptable')
                         ->with('model', $model)
                         ->with('arrClass', $arrClass)
-                        ->with('iptables', $iptables);
+                        ->with('iptables', $iptables)
+                        ->with('usedClass', $usedClass)
+                        ->with('usedIp', $usedIp);
     }
 
     public function iptableStore(Request $request) {
