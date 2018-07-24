@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="{{ asset('node_modules/multiselect-two-sides/css/style.css') }}">
 
         <link rel="stylesheet" href="{{ asset('node_modules/fullcalendar/dist/fullcalendar.css') }}">
+        <link rel="stylesheet" href="{{ asset('node_modules/bootstrap-datetime-picker/css/bootstrap-datetimepicker.css') }}">
 
         @if(config('adminlte.plugins.select2'))
         <!-- Select2 -->
@@ -59,6 +60,7 @@
         <script src="{{ asset('node_modules/inputmask/dist/inputmask/inputmask.extensions.js') }}"></script>
         <script src="{{ asset('node_modules/moment/moment.js') }}"></script>
         <script src="{{ asset('node_modules/fullcalendar/dist/fullcalendar.js') }}"></script>
+        <script src="{{ asset('node_modules/bootstrap-datetime-picker/js/bootstrap-datetimepicker.js') }}"></script>
 
 
         @if(config('adminlte.plugins.select2'))

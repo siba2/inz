@@ -10,8 +10,7 @@ class CreateScheduleTable extends Migration {
         Schema::connection('mysql_manager')->create('schedule', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->dateTime('start');
-            $table->dateTime('end');
+            $table->dateTime('start');      
         });
     }
 

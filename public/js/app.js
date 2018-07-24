@@ -50,29 +50,7 @@ $('#modal-confirm').modal({ })
         return false;
         }
 
-function modalAddName(href) {
-$('#modal-add-name').modal({})
-        .one('click', '#modal-add-name-button', function (e) {
-        var name = $('.new_name').val();
-                if (name == ''){
-        window.location = '/widget';
-        } else{
-        window.location = href + '/' + name;
+function modalSchedule() {
+$('#modal-schedule').modal({ });
         }
-
-        });
-        return false;
-        }
-
-function modalEditName(href) {
-$('#modal-edit-name').modal({})
-        .one('click', '#modal-edit-name-button', function (e) {
-        var name = $('#name').val();
-                if (name == ''){
-        window.location = '/widget';
-        } else{
-        window.location = href + '/' + name;
-        }
-        });
-        return false;
-        }
+   

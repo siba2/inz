@@ -15,7 +15,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-
+                <button class="btn btn-primary" onClick="modalSchedule()">{{ __('t_schedule.schedule.index.table.button.add') }}</button>
             </div>
             <div class="box-body">
                 <div id='calendar'></div>
@@ -29,21 +29,38 @@
 <!-- ./row -->
 @stop
 @section('js')
+
 <script type="text/javascript">
-$(document).ready(function () {
-    $('#calendar').fullCalendar({
-        eventSources: [
-            {
-                url: '/schedule/get/all',
-                type: 'GET',
-                error: function () {
-                    alert('there was an error while fetching events!');
-                },
-                color: 'yellow',
-                textColor: 'black'
-            }
-        ]
+    $(document).ready(function () {
+        $('#calendar').fullCalendar({
+            eventSources: [
+                {
+                    url: '/schedule/get/all',
+                    type: 'GET',
+                    color: 'yellow',
+                    textColor: 'black'
+                }
+            ]
+        });
+
+        $("#start").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii:00',
+            minuteStep: 1,
+            pickerPosition: "bottom",
+            autoclose: true
+        });
+
+        $("#end").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii:00',
+            minuteStep: 1,
+            pickerPosition: "bottom",
+            autoclose: true
+        });
+
+        if ('{{$errors->has("start")}}' || '{{$errors->has("title")}}') {
+           modalSchedule();
+        }
+
     });
-});
 </script>
 @stop

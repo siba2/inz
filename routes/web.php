@@ -20,6 +20,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/schedule', 'Schedule\ScheduleController@index')->name('schedule');
 Route::get('/schedule/get/all', 'Schedule\ScheduleController@getAll')->name('schedule.get.all');
+Route::post('/schedule/store', 'Schedule\ScheduleController@store')->name('schedule.store');
 
 Route::get('/customers', 'Customers\CustomersController@index')->name('customers');
 Route::get('/customers/create', 'Customers\CustomersController@create')->name('customers.create');
