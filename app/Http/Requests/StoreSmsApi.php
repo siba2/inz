@@ -6,25 +6,29 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSmsApi extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
+   public function authorize() {
+        return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
+    protected function formatErrors(Validator $validator) {
+        $validator->setAttributeNames($this->attributes());
+        $validator->passes();
+
+        return $validator->errors()->getMessages();
+    }
+
+    public function attributes() {
         return [
-            //
+            'phone' => trans('t_smsapi.smsapi.form.label.phone'),
+            'text' => trans('t_smsapi.smsapi.form.label.text'),
         ];
     }
+
+    public function rules() {
+        return [
+            'phone' => 'required|numeric',
+            'text' => 'required|string|min:3|max:200',
+        ];
+    }
+
 }

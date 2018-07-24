@@ -49,6 +49,11 @@ Route::post('/tariffs/store', 'Tariffs\TariffsController@store')->name('tariffs.
 Route::post('/tariffs/update', 'Tariffs\TariffsController@update')->name('tariffs.update');
 
 Route::get('/smsapi', 'Sms\SmsApiController@index')->name('smsapi');
+Route::get('/smsapi/create', 'Sms\SmsApiController@create')->name('smsapi.create');
+Route::get('/smsapi/info', 'Sms\SmsApiController@info')->name('smsapi.info');
+Route::get('/smsapi/delete/{id}', 'Sms\SmsApiController@delete')->name('smsapi.delete');
+Route::get('/smsapi/get/all', 'Sms\SmsApiController@getAll')->name('smsapi.get.all');
+Route::post('/smsapi/store', 'Sms\SmsApiController@store')->name('smsapi.store');
 
 Route::get('/serwersms', 'Sms\SerwersmsController@index')->name('serwersms');
 Route::get('/serwersms/create', 'Sms\SerwersmsController@create')->name('serwersms.create');
