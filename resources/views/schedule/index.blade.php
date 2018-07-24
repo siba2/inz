@@ -11,12 +11,11 @@
 @stop
 
 @section('content')
-@include('modals')
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-               
+
             </div>
             <div class="box-body">
                 <div id='calendar'></div>
@@ -29,19 +28,22 @@
 </div>
 <!-- ./row -->
 @stop
-
-@section('css')
-<script src="../js/app.js"></script>
-@stop
-
 @section('js')
-
-
 <script type="text/javascript">
 $(document).ready(function () {
-
-  
-
+    $('#calendar').fullCalendar({
+        eventSources: [
+            {
+                url: '/schedule/get/all',
+                type: 'GET',
+                error: function () {
+                    alert('there was an error while fetching events!');
+                },
+                color: 'yellow',
+                textColor: 'black'
+            }
+        ]
+    });
 });
 </script>
 @stop

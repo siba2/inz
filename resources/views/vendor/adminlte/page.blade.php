@@ -116,6 +116,7 @@
             <section class="content">
 
                 @yield('content')
+                @include('modals')
 
             </section>
             <!-- /.content -->

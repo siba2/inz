@@ -18,17 +18,22 @@ class ScheduleController extends Controller {
 
     public function getAll() {
 
-        $schedules = Schedule::select()->get();
-
-        $xml = '<xml>';
-
-        foreach ($schedules as $schedule) {
-            $xml .= '<event id="' . $schedule->id . '" title="' . $schedule->info . '"  start="' . $schedule->date . '" />';
-        }
-
-        $xml .= '</xml>';
-
-        return $xml;
+        return '[
+    "0",
+    {   
+        "title": "Test event",
+        "id": "821",
+        "end": "2018-07-24 14:00:00",
+        "start": "2018-07-024 06:00:00"
+    },
+    "1",
+    {     
+        "title": "Seba",
+        "id": "822",
+        "end": "2018-07-24 17:00:00",
+        "start": "2018-07-024 015:00:00"
+    }
+]';
     }
 
 }

@@ -11,7 +11,6 @@
 @stop
 
 @section('content')
-@include('modals')
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
@@ -27,16 +26,4 @@
     <!-- ./col-xs-12 -->
 </div>
 <!-- ./row -->
-@stop
-
-@section('css')
-@stop
-
-@section('js')
-<script src="./js/app.js"></script>
-<script type="text/javascript">
-$(document).ready(function () {
-
-});
-</script>
 @stop

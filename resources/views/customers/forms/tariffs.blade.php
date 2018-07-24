@@ -42,13 +42,7 @@
         <!-- /.box -->
     </div>
 </form>
-@section('css')
-<link rel="stylesheet" href="../../../../node_modules/multiselect-two-sides/css/style.css">
-@stop
-
 @section('js')
-<script src="../../../../node_modules/multiselect-two-sides/dist/js/multiselect.js"></script>
-
 <script type="text/javascript">
 $(document).ready(function () {
 

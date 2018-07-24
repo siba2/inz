@@ -36,9 +36,6 @@
     <!-- /.box -->
 </div>
 @section('js')
-<script src="../../node_modules/inputmask/dist/jquery.inputmask.bundle.js"></script>
-<script src="../../node_modules/inputmask/dist/inputmask/inputmask.extensions.js"></script>
-
 <script type="text/javascript">
 $(function () {
     $('#zip').inputmask("99-999");

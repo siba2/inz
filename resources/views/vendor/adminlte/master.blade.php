@@ -19,6 +19,8 @@
         <!-- Multiseelct -->
         <link rel="stylesheet" href="{{ asset('node_modules/multiselect-two-sides/css/style.css') }}">
 
+        <link rel="stylesheet" href="{{ asset('node_modules/fullcalendar/dist/fullcalendar.css') }}">
+
         @if(config('adminlte.plugins.select2'))
         <!-- Select2 -->
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css">
@@ -55,6 +57,9 @@
         <script src="{{ asset('node_modules/multiselect-two-sides/dist/js/multiselect.js') }}"></script>
         <script src="{{ asset('node_modules/inputmask/dist/jquery.inputmask.bundle.js') }}"></script>
         <script src="{{ asset('node_modules/inputmask/dist/inputmask/inputmask.extensions.js') }}"></script>
+        <script src="{{ asset('node_modules/moment/moment.js') }}"></script>
+        <script src="{{ asset('node_modules/fullcalendar/dist/fullcalendar.js') }}"></script>
+
 
         @if(config('adminlte.plugins.select2'))
         <!-- Select2 -->
