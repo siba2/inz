@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 use App\Employees;
+use App\Http\Requests\StoreEmployees;
+use App\Http\Requests\UpdateEmployees;
 
 class EmployeesController extends Controller {
 
@@ -33,14 +35,14 @@ class EmployeesController extends Controller {
         return view('employees/edit')->with('model', $model);
     }
 
-    public function store(Request $request) {
+    public function store(StoreEmployees $request) {
         $model = $this->prepareDBquery($request, new Employees);
         $model->save();
 
         return redirect()->to('employees');
     }
 
-    public function update(Request $request) {
+    public function update(UpdateEmployees $request) {
         $model = $this->prepareDBquery($request, Employees::find($request->id));
         $model->save();
 

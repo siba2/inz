@@ -3,10 +3,10 @@
 @section('title_postfix', ' | '.trans('t_sms.smsapi.index.title_postfix'))
 
 @section('content_header')
-<h1>{{ __('t_sms.smsapi.content_header') }}</h1>
+<h1>{{ __('t_smsapi.smsapi.content_header') }}</h1>
 <ol class="breadcrumb">
     <li><a href="/home"><i class="fa fa-dashboard"></i> {{ __('t_common.breadcrumb') }}</a></li>
-    <li class="active">{{ __('t_sms.smsapi.index.breadcrumb') }}</li>   
+    <li class="active">{{ __('t_smsapi.smsapi.index.breadcrumb') }}</li>   
 </ol>
 @stop
 

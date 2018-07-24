@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 use App\User;
+use App\Http\Requests\StoreAdmin;
+use App\Http\Requests\UpdateAdmin;
 
 class AdminController extends Controller {
 
@@ -33,14 +35,14 @@ class AdminController extends Controller {
         return view('admin/edit')->with('model', $model);
     }
 
-    public function store(Request $request) {
+    public function store(StoreAdmin $request) {
         $model = $this->prepareDBquery($request, new User);
         $model->save();
 
         return redirect()->to('admin');
     }
 
-    public function update(Request $request) {
+    public function update(UpdateAdmin $request) {
         $model = $this->prepareDBquery($request, User::find($request->id));
         $model->save();
 

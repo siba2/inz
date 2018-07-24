@@ -16,7 +16,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                {!! Html::decode(Html::linkRoute('iptables.node.create', '<button type="button" class="btn btn-flat btn-primary">'.__("t_iptables.node.index.table.button.add").'</button>', [ $model->id ])) !!}
+                {!! Html::decode(Html::linkRoute('iptables.node.create', '<button type="button" class="btn btn-flat btn-primary">'.__("t_iptables.iptables.node.index.table.button.add").'</button>', [ $model->id ])) !!}
             </div>         
             <div class="box-body">
                 <table id="table" class="table table-bordered table-hover"></table>

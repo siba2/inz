@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 use App\Tariffs;
-use App\Customers;
+use App\Http\Requests\StoreTariff;
+use App\Http\Requests\UpdateTariff;
 
 class TariffsController extends Controller {
 
@@ -34,14 +35,14 @@ class TariffsController extends Controller {
         return view('tariffs/edit')->with('model', $model);
     }
 
-    public function store(Request $request) {
+    public function store(StoreTariff $request) {
         $model = $this->prepareDBquery($request, new Tariffs);
         $model->save();
 
         return redirect()->to('tariffs');
     }
 
-    public function update(Request $request) {
+    public function update(UpdateTariff $request) {
         $model = $this->prepareDBquery($request, Tariffs::find($request->id));
         $model->save();
 

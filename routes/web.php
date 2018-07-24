@@ -37,6 +37,7 @@ Route::post('/customers/update', 'Customers\CustomersController@update')->name('
 Route::post('/customers/tariffs/store', 'Customers\CustomersController@tariffsStore')->name('customers.tariffs.store');
 Route::post('/customers/listip', 'Customers\CustomersController@listIp')->name('customers.listip');
 Route::post('/customers/iptable/store', 'Customers\CustomersController@iptableStore')->name('customers.iptable.store');
+Route::post('/customers/cash/store', 'Customers\CustomersController@cashStore')->name('customers.cash.store');
 
 Route::get('/tariffs', 'Tariffs\TariffsController@index')->name('tariffs');
 Route::get('/tariffs/create', 'Tariffs\TariffsController@create')->name('tariffs.create');

@@ -22,5 +22,14 @@ return [
     'header.text_admin_sub'             => 'Administrator',
     'text_admin'                        => 'Użytkownicy',
     
+    'header.text_iptables'              => 'Iptables',
+    'header.text_iptables_sub'          => 'Iptables',
+    'header.text_iptables_class'        => 'Klasy',
+   
+    
+    'header.text_sms'                   => 'SMS',
+    'header.text_sms_sub'               => 'Bramki SMS',
+    'text_serwersms'                    => 'SERWER SMS',
+    'text_smsapi'                       => 'SMS API',
 
 ];

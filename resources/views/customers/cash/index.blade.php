@@ -42,11 +42,12 @@
             serverSide: true,
             ajax: '/customers/cash/get/all/{{$model->id}}',
             columns: [
-                {title: "{{ __('t_customers.customers.cash.table.th.phone') }}", data: 'date', name: 'date'},
+                {title: "{{ __('t_customers.customers.cash.table.th.date') }}", data: 'date', name: 'date'},
                 {title: "{{ __('t_customers.customers.cash.table.th.id_tariff') }}", data: 'id_tariff', name: 'id_tariff'},
                 {title: "{{ __('t_customers.customers.cash.table.th.value') }}", data: 'value', name: 'value'},
                 {title: "{{ __('t_customers.customers.cash.table.th.balance') }}", data: 'balance', name: 'balance'}
-            ]
+            ],
+            order:[1,'asc']
         });
 
     });

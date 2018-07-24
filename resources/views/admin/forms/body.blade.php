@@ -18,13 +18,13 @@
             </div>  
             <div class="form-group {{ ($errors->has('password') ? 'has-error' : '') }}">
                 <label for="password">{{ __('t_admin.admin.form.label.password') }}</label>
-                <input type="text" id="email" name="password" class="form-control" value="">
+                <input type="text" id="password" name="password" class="form-control" value="">
                 @if ($errors->has('password')) <span class="help-block">{{ $errors->first('password') }}</span> @endif
             </div>  
-            <div class="form-group {{ ($errors->has('password_confirmation') ? 'has-error' : '') }}">
+            <div class="form-group {{ ($errors->has('password') ? 'has-error' : '') }}">
                 <label for="password_confirmation">{{ __('t_admin.admin.form.label.password_confirmation') }}</label>
                 <input type="text" id="password_confirmation" name="password_confirmation" class="form-control" value="">
-                @if ($errors->has('password_confirmation')) <span class="help-block">{{ $errors->first('password_confirmation') }}</span> @endif
+                @if ($errors->has('password')) <span class="help-block">{{ $errors->first('password') }}</span> @endif
             </div> 
         </div>
         <!-- ./box-body -->

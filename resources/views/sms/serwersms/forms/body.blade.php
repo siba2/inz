@@ -1,7 +1,7 @@
 <div class="col-xs-5">
     <div class="box box-primary">
         <div class="box-header with-border">
-            <h3 class="box-title">{{ __('t_serwersms.serwersms.form.header.central') }}</h3>
+            <h3 class="box-title">{{ __('t_serwersms.serwersms.form.header.serwersms') }}</h3>
         </div>
         <!-- /.box-header -->
         {{ csrf_field() }}

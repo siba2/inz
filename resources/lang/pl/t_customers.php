@@ -55,5 +55,31 @@ return [
     'customers.show.table.th.phone'             => 'Telefon',
     'customers.show.table.th.address'           => 'Ulica',
     'customers.show.table.th.info'              => 'Informacje',
+    'customers.show.ip'                         => 'Adress IP',
+    'customers.show.mac'                        => 'Adres MAC',
+    'customers.show.tariffs'                    => 'Taryfy',
+    
+    'customers.cash.content_header'             => 'Klienci',
+    'customers.cash.content_header_small'       => 'Bilans',
+    'customers.cash.breadcrumb'                 => 'Bilans',
+    'customers.cash.title_postfix'              => 'Klienci',
+    'customers.cash.table.button.add'           => 'Dodaj wpłate',
+    'customers.cash.table.th.date'              => 'Data',
+    'customers.cash.table.th.id_tariff'         => 'Taryfa',
+    'customers.cash.table.th.value'             => 'Wartość',
+    'customers.cash.table.th.balance'           => 'Bilans',
+    
+    'customers.cash.create.content_header'      => 'Bilans',
+    'customers.cash.content_header_small'       => 'Dodaj wpłate',
+    'customers.cash.create.breadcrumb'          => 'Dodaj wpłate',
+    'customers.cash.create.title_postfix'       => 'Dodaj wpłate',
+    
+    'customers.cash.form.header.central'        => 'Dodaj wpłate',
+    'customers.cash.form.label.manualTariff'    => 'Wpisz sam nazwe wpłaty',
+    'customers.cash.form.label.tariff'          => 'Taryfa',
+    'customers.cash.form.label.value'           => 'Wartość',
+    'customers.cash.form.label.name'            => 'Nazwa wpłaty',
+    'customers.cash.form.currency'              => 'zł',
+    
     
 ];

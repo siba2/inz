@@ -12,6 +12,9 @@ use App\IptablesClasses;
 use App\Iptables;
 use App\Cash;
 use DB;
+use App\Http\Requests\StoreCustomer;
+use App\Http\Requests\UpdateCustomer;
+use App\Http\Requests\StoreCash;
 
 class CustomersController extends Controller {
 
@@ -39,14 +42,14 @@ class CustomersController extends Controller {
         return view('customers/edit')->with('model', $model);
     }
 
-    public function store(Request $request) {
+    public function store(StoreCustomer $request) {
         $model = $this->prepareDBquery($request, new Customers);
         $model->save();
 
         return redirect()->to('customers');
     }
 
-    public function update(Request $request) {
+    public function update(UpdateCustomer $request) {
         $model = $this->prepareDBquery($request, Customers::find($request->id));
         $model->save();
 
@@ -215,14 +218,30 @@ class CustomersController extends Controller {
 
     public function cashCreate($id) {
         $model = Customers::find($id);
+        $tariffs = Tariffs::select()->get();
 
-        return view('customers/cash/create')->with('model', $model);
+        return view('customers/cash/create')->with('model', $model)->with('tariffs', $tariffs);
+    }
+
+    public function cashStore(StoreCash $request) {
+        $model = Customers::find($request->id);
+        $cash = Cash::where('id_customer', $request->id)->get();
+
+        $newCash = $this->cashPrepareDBquery($request, new Cash);
+        $newCash->save();
+
+        return redirect('customers/cash/' . $request->id)->with('model', $model)->with('cash', $cash);
     }
 
     public function cashGetAll($id) {
         return Datatables::of(Cash::select()->where('id_customer', $id)->get())
                         ->editColumn('id_tariff', function($cash) {
-                            return Tariffs::find($cash->id_tariff)->name;
+
+                            if ($cash->id_tariff == null) {
+                                return $cash->comment;
+                            } else {
+                                return Tariffs::find($cash->id_tariff)->name;
+                            }
                         })
                         ->editColumn('value', function($cash) {
 
@@ -251,6 +270,23 @@ class CustomersController extends Controller {
                         })
                         ->rawColumns(['balance', 'value'])
                         ->make(true);
+    }
+
+    private function cashPrepareDBquery(Request $request, Cash $model) {
+        $model->id_customer = $request->id;
+
+        $model->date = date('y-m-d h:m:s');
+
+        if ($request->manualTariff == 'on') {
+            $model->comment = $request->name;
+            $model->value = $request->value;
+        } else {
+            $model->id_tariff = $request->tariff;
+            $model->value = Tariffs::find($request->tariff)->value;
+            $model->comment = null;
+        }
+
+        return $model;
     }
 
 }
