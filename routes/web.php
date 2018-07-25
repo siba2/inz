@@ -18,6 +18,9 @@ Route::get('/', function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/role', 'Admin\RoleController@index')->name('role');
+
+
 Route::get('/schedule', 'Schedule\ScheduleController@index')->name('schedule');
 Route::get('/schedule/get/all', 'Schedule\ScheduleController@getAll')->name('schedule.get.all');
 Route::post('/schedule/store', 'Schedule\ScheduleController@store')->name('schedule.store');
@@ -72,14 +75,23 @@ Route::get('/employees/get/all', 'Employees\EmployeesController@getAll')->name('
 Route::post('/employees/store', 'Employees\EmployeesController@store')->name('employees.store');
 Route::post('/employees/update', 'Employees\EmployeesController@update')->name('employees.update');
 
-Route::get('/admin', 'Admin\AdminController@index')->name('admin');
-Route::get('/admin/create', 'Admin\AdminController@create')->name('admin.create');
-Route::get('/admin/show/{id}', 'Admin\AdminController@show')->name('admin.show');
-Route::get('/admin/edit/{id}', 'Admin\AdminController@edit')->name('admin.edit');
-Route::get('/admin/delete/{id}', 'Admin\AdminController@delete')->name('admin.delete');
-Route::get('/admin/get/all', 'Admin\AdminController@getAll')->name('admin.get.all');
-Route::post('/admin/store', 'Admin\AdminController@store')->name('admin.store');
-Route::post('/admin/update', 'Admin\AdminController@update')->name('admin.update');
+Route::get('/administrators/users', 'Administrators\UsersController@index')->name('administrators.users');
+Route::get('/administrators/users/create', 'Administrators\UsersController@create')->name('administrators.users.create');
+Route::get('/administrators/users/show/{id}', 'Administrators\UsersController@show')->name('administrators.users.show');
+Route::get('/administrators/users/edit/{id}', 'Administrators\UsersController@edit')->name('administrators.users.edit');
+Route::get('/administrators/users/delete/{id}', 'Administrators\UsersController@delete')->name('administrators.users.delete');
+Route::get('/administrators/users/get/all', 'Administrators\UsersController@getAll')->name('administrators.users.get.all');
+Route::post('/administrators/users/store', 'Administrators\UsersController@store')->name('administrators.users.store');
+Route::post('/administrators/users/update', 'Administrators\UsersController@update')->name('administrators.users.update');
+
+Route::get('/administrators/roles', 'Administrators\RolesController@index')->name('administrators.roles');
+Route::get('/administrators/roles/create', 'Administrators\RolesController@create')->name('administrators.roles.create');
+Route::get('/administrators/roles/show/{id}', 'Administrators\RolesController@show')->name('administrators.roles.show');
+Route::get('/administrators/roles/edit/{id}', 'Administrators\RolesController@edit')->name('administrators.roles.edit');
+Route::get('/administrators/roles/delete/{id}', 'Administrators\RolesController@delete')->name('administrators.roles.delete');
+Route::get('/administrators/roles/get/all', 'Administrators\RolesController@getAll')->name('administrators.roles.get.all');
+Route::post('/administrators/roles/store', 'Administrators\RolesController@store')->name('administrators.roles.store');
+Route::post('/administrators/roles/update', 'Administrators\RolesController@update')->name('administrators.roles.update');
 
 Route::get('/iptables', 'Iptables\IptablesController@index')->name('iptables');
 Route::get('/iptables/create', 'Iptables\IptablesController@create')->name('iptables.create');

@@ -117,15 +117,20 @@ class AppServiceProvider extends ServiceProvider {
             ]);
         });
         $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
-            $event->menu->add(trans('t_menu.header.text_admin'));
+            $event->menu->add(trans('t_menu.header.text_administrators'));
             $event->menu->add([
-                'text' => trans('t_menu.header.text_admin_sub'),
+                'text' => trans('t_menu.header.text_administrators_sub'),
                 'icon' => 'wrench',
                 'submenu' => [
                     [
-                        'text' => trans('t_menu.text_admin'),
+                        'text' => trans('t_menu.text_users'),
                         'icon' => '',
-                        'url' => '/admin',
+                        'url' => '/administrators/users',
+                    ],
+                    [
+                        'text' => trans('t_menu.text_roles'),
+                        'icon' => '',
+                        'url' => '/administrators/roles',
                     ],
                 ]
             ]);

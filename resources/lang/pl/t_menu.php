@@ -18,9 +18,10 @@ return [
     'header.text_employees_sub'         => 'Praca',
     'text_employees'                    => 'Pracownicy',
     
-    'header.text_admin'                 => 'Administrator',
-    'header.text_admin_sub'             => 'Administrator',
-    'text_admin'                        => 'Użytkownicy',
+    'header.text_administrators'        => 'Administrator',
+    'header.text_administrators_sub'    => 'Administrator',
+    'text_users'                        => 'Użytkownicy',
+    'text_roles'                        => 'Reguły',
     
     'header.text_iptables'              => 'Iptables',
     'header.text_iptables_sub'          => 'Iptables',

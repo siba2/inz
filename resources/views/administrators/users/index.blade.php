@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 
-@section('title_postfix', ' | '.trans('t_admin.admin.index.title_postfix'))
+@section('title_postfix', ' | '.trans('t_administrators.users.index.title_postfix'))
 
 @section('content_header')
-<h1>{{ __('t_admin.admin.content_header') }}</h1>
+<h1>{{ __('t_administrators.users.content_header') }}</h1>
 <ol class="breadcrumb">
     <li><a href="/home"><i class="fa fa-dashboard"></i> {{ __('t_common.breadcrumb') }}</a></li>
-    <li class="active">{{ __('t_admin.admin.index.breadcrumb') }}</li>   
+    <li class="active">{{ __('t_administrators.users.index.breadcrumb') }}</li>   
 </ol>
 @stop
 
@@ -15,7 +15,7 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                {!! Html::decode(Html::linkRoute('admin.create', '<button type="button" class="btn btn-flat btn-primary">'.__("t_admin.admin.index.table.button.add").'</button>')) !!}
+                {!! Html::decode(Html::linkRoute('administrators.users.create', '<button type="button" class="btn btn-flat btn-primary">'.__("t_administrators.users.index.table.button.add").'</button>')) !!}
             </div>
             <div class="box-body">
                 <table id="table" class="table table-bordered table-hover"></table>
@@ -38,10 +38,10 @@ $(document).ready(function () {
         },
         processing: true,
         serverSide: true,
-        ajax: '/admin/get/all',
+        ajax: '/administrators/users/get/all',
         columns: [
-            {title: "{{ __('t_admin.admin.index.table.th.name') }}", data: 'name', name: 'name'},
-            {title: "{{ __('t_admin.admin.index.table.th.email') }}", data: 'email', name: 'email'},
+            {title: "{{ __('t_administrators.users.index.table.th.name') }}", data: 'name', name: 'name'},
+            {title: "{{ __('t_administrators.users.index.table.th.email') }}", data: 'email', name: 'email'},
             {title: "", data: 'manage', name: 'manage', orderable: false, searchable: false}
         ]
     });
