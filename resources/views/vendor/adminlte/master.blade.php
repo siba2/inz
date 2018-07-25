@@ -61,8 +61,8 @@
         <script src="{{ asset('node_modules/moment/moment.js') }}"></script>
         <script src="{{ asset('node_modules/fullcalendar/dist/fullcalendar.js') }}"></script>
         <script src="{{ asset('node_modules/bootstrap-datetime-picker/js/bootstrap-datetimepicker.js') }}"></script>
-
-
+        <script src="{{ asset('node_modules/chart.js/dist/Chart.js') }}"></script>
+     
         @if(config('adminlte.plugins.select2'))
         <!-- Select2 -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
