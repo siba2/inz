@@ -75,6 +75,11 @@ class AppServiceProvider extends ServiceProvider {
                         'icon' => '',
                         'url' => '/tariffs',
                     ],
+                    [
+                        'text' => trans('t_menu.text_documents'),
+                        'icon' => '',
+                        'url' => '/documents',
+                    ],
                 ]
             ]);
         });

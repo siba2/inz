@@ -92,3 +92,17 @@ Route::get('/iptables/node/get/all/{id}', 'Iptables\IptablesController@nodeGetAl
 Route::post('/iptables/store', 'Iptables\IptablesController@store')->name('iptables.store');
 Route::post('/iptables/node/store', 'Iptables\IptablesController@nodeStore')->name('iptables.node.store');
 
+Route::get('/documents', 'Documents\DocumentsController@index')->name('documents');
+Route::get('/documents/create', 'Documents\DocumentsController@create')->name('documents.create');
+Route::get('/documents/download/{name}', 'Documents\DocumentsController@download')->name('documents.download');
+Route::get('/documents/delete/{name}', 'Documents\DocumentsController@delete')->name('documents.delete');
+Route::get('/documents/get/all', 'Documents\DocumentsController@getAll')->name('documents.get.all');
+Route::post('/documents/store', 'Documents\DocumentsController@store')->name('documents.store');
+
+
+
+
+
+
+
+
