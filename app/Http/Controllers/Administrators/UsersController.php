@@ -10,6 +10,7 @@ use App\Http\Requests\StoreUsers;
 use App\Http\Requests\UpdateUsers;
 use Spatie\Permission\Models\Role;
 use App\ModelHasRoles;
+use Auth;
 
 class UsersController extends Controller {
 
@@ -51,7 +52,7 @@ class UsersController extends Controller {
         $roles = Role::select()->get();
         $rolesUsedID = ModelHasRoles::where('model_id', $id)->get();
         $arr = [];
-        
+
         foreach ($rolesUsedID as $role) {
             array_push($arr, $role->role_id);
         }
