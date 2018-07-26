@@ -4,12 +4,11 @@
 
 @section('content_header')
 <h1>
-    {{ __('t_administrators.roles.index.content_header') }}
-    <small>{{ __('t_administrators.roles.index.content_header_small') }}</small>
+    {{ __('t_administrators.roles.index.content_header') }}  
 </h1>
 <ol class="breadcrumb">
     <li><a href="/"><i class="fa fa-dashboard"></i> {{ __('t_common.breadcrumb') }}</a></li>
-    <li class="active">{{ __('t_admin.roles.index.breadcrumb') }}</li>
+    <li class="active">{{ __('t_administrators.roles.index.breadcrumb') }}</li>
 </ol>
 @stop
 

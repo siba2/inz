@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAdmin extends FormRequest
+class UpdateUsers extends FormRequest
 {
-    
    public function authorize() {
         return true;
     }
@@ -26,10 +26,10 @@ class StoreAdmin extends FormRequest
         ];
     }
 
-    public function rules() {
+    public function rules(Request $request) {
         return [
-            'name' => 'required|unique:users,name',
-            'email' => 'required|email|unique:users,email',
+            'name' => 'required|unique:users,name,' . $request->id,
+            'email' => 'required|email|unique:users,email,' . $request->id,
             'password'      => 'required|confirmed',
         ];
     }

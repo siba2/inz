@@ -33,17 +33,13 @@
                         <td>{{$model->name}}</td>
                     </tr>
                     <tr>
-                        <td><b>{{ __('t_administrators.roles.show.table.th.name') }}</b></td>
-                        <td>{{$model->name}}</td>
-                    </tr>
-                    <tr>
                         <td><b>{{ __('t_administrators.roles.show.table.th.permissions') }}</b></td>
                         <td>
                             @foreach($permissions as  $permission)
                             @if($loop->first)
                             {{$permission->name}}
                             @else
-                           , {{$permission->name}}
+                            , {{$permission->name}}
                             @endif
                             @endforeach
                         </td>
@@ -53,7 +49,7 @@
                         <td>{{$model->created_at}}</td>
                     </tr>
                     <tr>
-                        <td><b>{{ __('t_administratorsistrators.roles.show.table.th.updated_at') }}</b></td>
+                        <td><b>{{ __('t_administrators.roles.show.table.th.updated_at') }}</b></td>
                         <td>{{$model->updated_at}}</td>
                     </tr>
                 </table>

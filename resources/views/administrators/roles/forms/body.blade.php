@@ -7,7 +7,7 @@
         {{ csrf_field() }}
         <div class="box-body">
             <div class="form-group {{ ($errors->has('name') ? 'has-error' : '') }}">
-                <label for="name">{{ __('t_administratorsistrators.roles.form.label.name') }}*</label>
+                <label for="name">{{ __('t_administrators.roles.form.label.name') }}*</label>
                 <input type="text" id="name" name="name" class="form-control" required value="{{ old('name', (isset($model->name) ? $model->name : '')) }}">
                 @if ($errors->has('name')) <span class="help-block">{{ $errors->first('name') }}</span> @endif
             </div>         

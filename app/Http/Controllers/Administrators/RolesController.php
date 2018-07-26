@@ -8,6 +8,8 @@ use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Yajra\Datatables\Datatables;
 use App\RoleHasPermissions;
+use App\Http\Requests\StoreRoles;
+use App\Http\Requests\UpdateRoles;
 
 class RolesController extends Controller {
 
@@ -33,7 +35,7 @@ class RolesController extends Controller {
         return view('administrators/roles/create')->with('permissions', $permissions);
     }
 
-    public function store(Request $request) {
+    public function store(StoreRoles $request) {
         $model = $this->prepareDBquery($request, new Role);
         $model->save();
 
@@ -58,7 +60,7 @@ class RolesController extends Controller {
                         ->with('permissionsUsed', $permissionsUsed);
     }
 
-    public function update(Request $request) {
+    public function update(UpdateRoles $request) {
         $model = $this->prepareDBquery($request, Role::find($request->id));
         $model->save();
 

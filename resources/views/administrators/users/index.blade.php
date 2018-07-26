@@ -3,7 +3,7 @@
 @section('title_postfix', ' | '.trans('t_administrators.users.index.title_postfix'))
 
 @section('content_header')
-<h1>{{ __('t_administrators.users.content_header') }}</h1>
+<h1>{{ __('t_administrators.users.index.content_header') }}</h1>
 <ol class="breadcrumb">
     <li><a href="/home"><i class="fa fa-dashboard"></i> {{ __('t_common.breadcrumb') }}</a></li>
     <li class="active">{{ __('t_administrators.users.index.breadcrumb') }}</li>   

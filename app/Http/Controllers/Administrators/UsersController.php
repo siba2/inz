@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
 use App\User;
-use App\Http\Requests\StoreAdmin;
-use App\Http\Requests\UpdateAdmin;
+use App\Http\Requests\StoreUsers;
+use App\Http\Requests\UpdateUsers;
 use Spatie\Permission\Models\Role;
 use App\ModelHasRoles;
 
@@ -33,7 +33,7 @@ class UsersController extends Controller {
         return view('administrators/users/create')->with('roles', $roles);
     }
 
-    public function store(StoreAdmin $request) {
+    public function store(StoreUsers $request) {
         $model = $this->prepareDBquery($request, new User);
         $model->save();
 
@@ -66,7 +66,7 @@ class UsersController extends Controller {
                         ->with('roles', $roles);
     }
 
-    public function update(UpdateAdmin $request) {
+    public function update(UpdateUsers $request) {
         $model = $this->prepareDBquery($request, User::find($request->id));
         $model->save();
 

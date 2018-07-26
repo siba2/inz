@@ -5,9 +5,9 @@ namespace App\Http\Requests;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateAdmin extends FormRequest
+class UpdateRoles extends FormRequest
 {
-   public function authorize() {
+    public function authorize() {
         return true;
     }
 
@@ -20,17 +20,13 @@ class UpdateAdmin extends FormRequest
 
     public function attributes() {
         return [
-            'name' => trans('t_admin.admin.form.label.name'),
-            'email' => trans('t_admin.aadmin.form.label.email'),
-            'password' => trans('t_admin.aadmin.form.label.password'),
+            'name' => trans('t_administrators.roles.form.label.name'),          
         ];
     }
 
     public function rules(Request $request) {
-        return [
-            'name' => 'required|unique:users,name,' . $request->id,
-            'email' => 'required|email|unique:users,email,' . $request->id,
-            'password'      => 'required|confirmed',
+         return [
+            'name' => 'required|unique:roles,name,'.$request->id,          
         ];
     }
 }
