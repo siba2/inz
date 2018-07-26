@@ -22,8 +22,13 @@
 </div>
 @section('js')
 <script type="text/javascript">
-    $(document).ready(function () {      
-       $('#ipaddr').inputmask('{{$ipaddr}}9{1,3}');      
+    $(document).ready(function () {
+    
+        var ip = "{{$ipaddr}}";
+      
+        $("#ipaddr").inputmask({
+            "mask": ip.replace(/9/g, "\\9") + "9{1,3}"
+        });
     });
 </script>
 @stop
