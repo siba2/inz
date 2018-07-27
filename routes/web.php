@@ -17,6 +17,9 @@ Route::get('/', function () {
 })->name('/');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/password/reset', 'Auth\ResetPasswordController@index');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
 
 Route::get('/schedule', 'Schedule\ScheduleController@index')->name('schedule')->middleware('permission:schedule');
 Route::get('/schedule/get/all', 'Schedule\ScheduleController@getAll')->name('schedule.get.all')->middleware('permission:schedule');
@@ -39,6 +42,9 @@ Route::post('/customers/tariffs/store', 'Customers\CustomersController@tariffsSt
 Route::post('/customers/listip', 'Customers\CustomersController@listIp')->name('customers.listip')->middleware('permission:customers');
 Route::post('/customers/iptable/store', 'Customers\CustomersController@iptableStore')->name('customers.iptable.store')->middleware('permission:customers');
 Route::post('/customers/cash/store', 'Customers\CustomersController@cashStore')->name('customers.cash.store')->middleware('permission:customers');
+
+Route::get('/debtors', 'Debtors\DebtorsController@index')->name('debtors');//->middleware('permission:debtors');
+Route::get('/debtors/get/all', 'Debtors\DebtorsController@getAll')->name('debtors.get.all');//->middleware('permission:debtors');
 
 Route::get('/documents', 'Documents\DocumentsController@index')->name('documents')->middleware('permission:documents');
 Route::get('/documents/create', 'Documents\DocumentsController@create')->name('documents.create')->middleware('permission:documents');

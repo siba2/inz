@@ -43,6 +43,11 @@ class AppServiceProvider extends ServiceProvider {
                             'icon' => '',
                             'url' => '/customers',
                         ],
+                        [
+                            'text' => trans('t_menu.text_debtors'),
+                            'icon' => '',
+                            'url' => '/debtors',
+                        ],
                     ]
                 ]);
             }
@@ -136,6 +141,11 @@ class AppServiceProvider extends ServiceProvider {
                             'url' => '/administrators/roles',
                         ],
                     ]
+                ]);
+                $event->menu->add([
+                    'text' => trans('t_menu.text_system_password_reset'),
+                    'icon' => 'key',
+                    'url' => '/password/reset',
                 ]);
             }
         });
