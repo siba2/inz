@@ -18,7 +18,7 @@
                 <button class="btn btn-primary" onClick="modalSchedule()">{{ __('t_schedule.schedule.index.table.button.add') }}</button>
             </div>
             <div class="box-body">
-                <div id='calendar'></div>
+                <div id='calendar' ></div>
             </div>
             <!-- ./box-body -->
         </div>
@@ -33,6 +33,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#calendar').fullCalendar({
+            height: 750,
             eventSources: [
                 {
                     url: '/schedule/get/all',
@@ -40,6 +41,7 @@
                     color: 'yellow',
                     textColor: 'black'
                 }
+
             ]
         });
 
@@ -58,7 +60,7 @@
         });
 
         if ('{{$errors->has("start")}}' || '{{$errors->has("title")}}') {
-           modalSchedule();
+            modalSchedule();
         }
 
     });
