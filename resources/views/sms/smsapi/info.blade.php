@@ -74,7 +74,12 @@
 
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">{{ __('t_smsapi.smsapi.show.') }}</h3>
+        <select id="years" name="years" class="btn btn-flat btn-primary" >
+            @foreach($years as $year)
+            <option value="{{$year->year}}" >{{$year->year}}</option>
+            @endforeach           
+        </select>
+        <center><h3 class="box-title">{{ __('t_smsapi.smsapi.show.') }}</h3></center>
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
@@ -101,7 +106,7 @@
                 data: {
                     labels: months,
                     datasets: [{
-                            label: '{{ __("t_smsapi.smsapi.show.") }}',
+                            label: '',
                             data: dataChart,
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
@@ -146,23 +151,30 @@
             });
         }
 
-        $.ajax({
-            type: "get",
-            url: '/smsapi/info/data',
-            success: function (data) {
-
-                dataChart = data[0];
-                months = data[1];
-            }
-        }).done(function (data) {
-            rawChart();
-        });
-
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        $('#years').change(function () {
+            $.ajax({
+                type: "post",
+                url: '/smsapi/info/data',
+                data: {
+                    year: $('#years').val()
+                },
+                success: function (data) {
+
+                    dataChart = data[0];
+                    months = data[1];
+                }
+            }).done(function (data) {
+                rawChart();
+            });
+        });
+
+        $('#years').change();
     });
 </script>
 @stop

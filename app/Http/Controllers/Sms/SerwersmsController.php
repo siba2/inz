@@ -8,6 +8,7 @@ use \SMS;
 use App\SerwerSms;
 use Yajra\Datatables\Datatables;
 use App\Http\Requests\StoreSerwersms;
+use DB;
 
 class SerwersmsController extends Controller {
 
@@ -24,7 +25,9 @@ class SerwersmsController extends Controller {
     }
 
     public function info() {
-        return view('sms/serwersms/info');
+        $years = SerwerSms::select(DB::raw('YEAR(created_at) as year'))->distinct('year')->get();
+
+        return view('sms/serwersms/info')->with('years', $years);
     }
 
     public function store(StoreSerwersms $request) {
@@ -62,12 +65,12 @@ class SerwersmsController extends Controller {
         return redirect()->to('serwersms');
     }
 
-    public function infoData() {
+    public function infoData(Request $request) {
         $months = [trans(__('t_common.months.January')), trans(__('t_common.months.February')), trans(__('t_common.months.March')), trans(__('t_common.months.April')), trans(__('t_common.months.May')), trans(__('t_common.months.June')), trans(__('t_common.months.July')), trans(__('t_common.months.August')), trans(__('t_common.months.September')), trans(__('t_common.months.October')), trans(__('t_common.months.November')), trans(__('t_common.months.December'))];
         $arr = [];
 
         for ($i = 1; $i <= 12; $i++) {
-            $data = SerwerSms::select('created_at')->whereMonth('created_at', '=', $i)->count();
+            $data = SerwerSms::select('created_at')->whereMonth('created_at', '=', $i)->whereYear('created_at', '=', $request->year)->count();
 
             array_push($arr, $data);
         }
