@@ -3,6 +3,7 @@
 @section('title_postfix', ' | '.trans('t_smsapi.smsapi.info.title_postfix'))
 
 @section('content_header')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <h1>{{ __('t_smsapi.smsapi.content_header') }}</h1>
 <ol class="breadcrumb">
     <li><a href="/home"><i class="fa fa-dashboard"></i> {{ __('t_common.breadcrumb') }}</a></li>
@@ -23,7 +24,7 @@
                             <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">{{ __('t_serwersms.serwersms.show.') }}</span>
+                                <span class="info-box-text">{{ __('t_smsapi.smsapi.show.countSMS') }}</span>
                                 <span class="info-box-number">1,410</span>
                             </div>
                             <!-- /.info-box-content -->
@@ -36,8 +37,8 @@
                             <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">{{ __('t_serwersms.serwersms.show.') }}</span>
-                                <span class="info-box-number">410</span>
+                                <span class="info-box-text">{{ __('t_smsapi.smsapi.show.pkt') }}</span>
+                                <span class="info-box-number">{{$points}} {{ __('t_smsapi.smsapi.show.pkt') }}</span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -49,7 +50,7 @@
                             <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">{{ __('t_serwersms.serwersms.show.') }}</span>
+                                <span class="info-box-text">{{ __('t_smsapi.smsapi.show.') }}</span>
                                 <span class="info-box-number">13,648</span>
                             </div>
                             <!-- /.info-box-content -->
@@ -73,8 +74,7 @@
 
 <div class="box box-primary">
     <div class="box-header with-border">
-        <h3 class="box-title">Area Chart</h3>
-
+        <h3 class="box-title">{{ __('t_smsapi.smsapi.show.') }}</h3>
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
@@ -83,7 +83,7 @@
     </div>
     <div class="box-body">
         <div class="chart">
-            <canvas id="myChart" style="height: 150px; width: 474px;" width="474" height="150"></canvas>
+            <canvas id="myChart" width="400" height="100"></canvas>
         </div>
     </div>
     <!-- /.box-body -->
@@ -93,11 +93,75 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var ctx = $('#myChart');
+        var dataChart;
+        var months;
+        function rawChart() {
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: months,
+                    datasets: [{
+                            label: '{{ __("t_smsapi.smsapi.show.") }}',
+                            data: dataChart,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(255,99,132,1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                    }
+                }
+            });
+        }
 
-        var myChart = new Chart(ctx, {
-            type: 'line',
-            data: [12, 19, 3, 5, 2, 3]
+        $.ajax({
+            type: "get",
+            url: '/smsapi/info/data',
+            success: function (data) {
 
+                dataChart = data[0];
+                months = data[1];
+            }
+        }).done(function (data) {
+            rawChart();
+        });
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
     });
 </script>

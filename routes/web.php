@@ -64,6 +64,7 @@ Route::post('/tariffs/update', 'Tariffs\TariffsController@update')->name('tariff
 
 Route::get('/smsapi', 'Sms\SmsApiController@index')->name('smsapi')->middleware('permission:sms');
 Route::get('/smsapi/create', 'Sms\SmsApiController@create')->name('smsapi.create')->middleware('permission:sms');
+Route::get('/smsapi/info/data', 'Sms\SmsApiController@infoData')->name('smsapi.info.data')->middleware('permission:sms');
 Route::get('/smsapi/info', 'Sms\SmsApiController@info')->name('smsapi.info')->middleware('permission:sms');
 Route::get('/smsapi/delete/{id}', 'Sms\SmsApiController@delete')->name('smsapi.delete')->middleware('permission:sms');
 Route::get('/smsapi/get/all', 'Sms\SmsApiController@getAll')->name('smsapi.get.all')->middleware('permission:sms');
@@ -72,6 +73,7 @@ Route::post('/smsapi/store', 'Sms\SmsApiController@store')->name('smsapi.store')
 Route::get('/serwersms', 'Sms\SerwersmsController@index')->name('serwersms')->middleware('permission:sms');
 Route::get('/serwersms/create', 'Sms\SerwersmsController@create')->name('serwersms.create')->middleware('permission:sms');
 Route::get('/serwersms/info', 'Sms\SerwersmsController@info')->name('serwersms.info')->middleware('permission:sms');
+Route::get('/serwersms/info/data', 'Sms\SerwersmsController@infoData')->name('serwersms.info.data')->middleware('permission:sms');
 Route::get('/serwersms/delete/{id}', 'Sms\SerwersmsController@delete')->name('serwersms.delete')->middleware('permission:sms');
 Route::get('/serwersms/get/all', 'Sms\SerwersmsController@getAll')->name('serwersms.get.all')->middleware('permission:sms');
 Route::post('/serwersms/store', 'Sms\SerwersmsController@store')->name('serwersms.store')->middleware('permission:sms');

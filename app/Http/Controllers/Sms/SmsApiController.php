@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use SMSApi\Client;
 use SMSApi\Api\SmsFactory;
+use SMSApi\Api\UserFactory;
 use SMSApi\Exception\SmsapiException;
 use App\Http\Requests\StoreSmsApi;
 use App\SmsApi;
@@ -27,7 +28,32 @@ class SmsApiController extends Controller {
     }
 
     public function info() {
-        return view('sms/smsapi/info');
+        $client = Client::createFromToken(env('SMSAPI_TOKEN'));
+
+        $smsapi = new UserFactory;
+        $smsapi->setClient($client);
+
+        try {
+            $points = $smsapi->actionGetPoints()->execute()->getPoints();
+        } catch (SmsapiException $exception) {
+            $points = '';
+        }
+
+        return view('sms/smsapi/info')
+                        ->with('points', $points);
+    }
+
+    public function infoData() {
+        $months = [trans(__('t_common.months.January')), trans(__('t_common.months.February')), trans(__('t_common.months.March')), trans(__('t_common.months.April')), trans(__('t_common.months.May')), trans(__('t_common.months.June')), trans(__('t_common.months.July')), trans(__('t_common.months.August')), trans(__('t_common.months.September')), trans(__('t_common.months.October')), trans(__('t_common.months.November')), trans(__('t_common.months.December'))];
+        $arr = [];
+
+        for ($i = 1; $i <= 12; $i++) {
+            $data = SmsApi::select('created_at')->whereMonth('created_at', '=', $i)->count();
+
+            array_push($arr, $data);
+        }
+
+        return [$arr, $months];
     }
 
     public function store(StoreSmsApi $request) {
@@ -71,9 +97,9 @@ class SmsApiController extends Controller {
     public function getAll() {
         return Datatables::of(SmsApi::select('id', 'sms_id', 'phone', 'text')->get())
                         ->addColumn('status', function ($sms) {
-                            
-                            
-                            
+
+
+
                             return '';
                         })
                         ->addColumn('manage', function ($sms) {
