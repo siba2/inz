@@ -53,11 +53,11 @@ class Kernel extends ConsoleKernel {
                     $cash->save();
                 }
             }
-        })->monthly();
+        })->everyMinute();
 
-        $schedule->command('backup:database --connection=mysql')->daily();
-        $schedule->command('backup:clean')->daily()->at('11:48');
-        $schedule->command('backup:run')->daily()->at('11:48');
+        $schedule->command('backup:database --connection=mysql')->everyMinute();
+        $schedule->command('backup:clean')->everyMinute();
+        $schedule->command('backup:run')->everyMinute();
     }
 
     /**

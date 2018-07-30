@@ -82,7 +82,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">{{ __('t_customers.customers.show.mac') }}</span>
-                                <span class="info-box-number">{{$information->mac}}</span>
+                                <span class="info-box-number">{{$mac}}</span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -95,7 +95,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">{{ __('t_customers.customers.show.comment') }}</span>
-                                <span class="info-box-number">{{$information->comment}}</span>
+                                <span class="info-box-number">{{$comment}}</span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
