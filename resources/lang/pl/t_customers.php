@@ -57,7 +57,8 @@ return [
     'customers.show.table.th.info'              => 'Informacje',
     'customers.show.ip'                         => 'Adress IP',
     'customers.show.mac'                        => 'Adres MAC',
-    'customers.show.tariffs'                    => 'Taryfy',
+    'customers.show.comment'                    => 'Komentarz',
+    'customers.show.tariff'                     => 'Taryfy',
     
     'customers.cash.content_header'             => 'Klienci',
     'customers.cash.content_header_small'       => 'Bilans',

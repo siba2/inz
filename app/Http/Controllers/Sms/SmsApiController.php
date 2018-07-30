@@ -31,6 +31,7 @@ class SmsApiController extends Controller {
     public function info() {
         $client = Client::createFromToken(env('SMSAPI_TOKEN'));
         $years = SmsApi::select(DB::raw('YEAR(created_at) as year'))->distinct('year')->get();
+        $count = SmsApi::all()->count();
 
         $smsapi = new UserFactory;
         $smsapi->setClient($client);
@@ -43,6 +44,7 @@ class SmsApiController extends Controller {
 
         return view('sms/smsapi/info')
                         ->with('points', $points)
+                        ->with('count', $count)
                         ->with('years', $years);
     }
 
@@ -81,7 +83,7 @@ class SmsApiController extends Controller {
                 $model = new SmsApi;
                 $model->sms_id = $status->getId();
                 $model->phone = $status->getNumber();
-                $model->text = $request->text;
+                $model->text = $request->text;               
                 $model->save();
             }
         } catch (SmsapiException $exception) {
@@ -102,9 +104,26 @@ class SmsApiController extends Controller {
         return Datatables::of(SmsApi::select('id', 'sms_id', 'phone', 'text')->get())
                         ->addColumn('status', function ($sms) {
 
+                            $client = Client::createFromToken(env('SMSAPI_TOKEN'));
+
+                            $smsapi = new SmsFactory;
+                            $smsapi->setClient($client);
+
+                            try {
+                                $actionSend = $smsapi->actionGet($sms->sms_id);
+
+                                $response = $actionSend->execute();
+
+                                foreach ($response->getList() as $status) {
 
 
-                            return '';
+                                    $html = $status->getStatus();
+                                }
+                            } catch (SmsapiException $exception) {
+                                $html = 'ERROR: ' . $exception->getMessage();
+                            }
+
+                            return $html;
                         })
                         ->addColumn('manage', function ($sms) {
                             $html = '<div class="btn-group">';

@@ -28,8 +28,25 @@ class CustomersController extends Controller {
 
     public function show($id) {
         $model = Customers::find($id);
+        $information = Iptables::select('ipaddr', 'mac', 'comment')->where('id_customer', $id)->first();
 
-        return view('customers/show')->with('model', $model);
+        $ip = long2ip($information->ipaddr);
+        $tariffs = TariffsCustomer::where('id_customer', $id)->get();
+        $arr = [];
+
+        foreach ($tariffs as $tariff) {
+
+            array_push($arr, $tariff->id_traffis);
+        }
+
+
+        $arrTariff = Tariffs::select('name')->whereIn('id', $arr)->get();
+
+        return view('customers/show')
+                        ->with('model', $model)
+                        ->with('ip', $ip)
+                        ->with('arrTariff', $arrTariff)
+                        ->with('information', $information);
     }
 
     public function create() {

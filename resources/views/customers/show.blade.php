@@ -69,7 +69,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">{{ __('t_customers.customers.show.ip') }}</span>
-                                <span class="info-box-number">1,410</span>
+                                <span class="info-box-number">{{$ip}}</span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -82,7 +82,7 @@
 
                             <div class="info-box-content">
                                 <span class="info-box-text">{{ __('t_customers.customers.show.mac') }}</span>
-                                <span class="info-box-number">410</span>
+                                <span class="info-box-number">{{$information->mac}}</span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -94,8 +94,8 @@
                             <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">{{ __('t_customers.customers.show.tariffs') }}</span>
-                                <span class="info-box-number">13,648</span>
+                                <span class="info-box-text">{{ __('t_customers.customers.show.comment') }}</span>
+                                <span class="info-box-number">{{$information->comment}}</span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -103,7 +103,20 @@
                     </div>
                     <!-- /.col -->
                     <div class="col-md-3 col-sm-6 col-xs-12">
-                       
+                        <div class="info-box">
+                            <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+
+                            <div class="info-box-content">
+                                <span class="info-box-text">{{ __('t_customers.customers.show.tariff') }}</span>
+                                <span class="info-box-number">
+                                    @foreach($arrTariff as $tariff)
+                                    {{$tariff->name}}<br />
+                                    @endforeach
+                                </span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
                     </div>
                     <!-- /.col -->
                 </div>

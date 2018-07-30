@@ -44,7 +44,11 @@
                 {title: "{{ __('t_customers.customers.cash.table.th.value') }}", data: 'value', name: 'value'},
                 {title: "{{ __('t_customers.customers.cash.table.th.balance') }}", data: 'balance', name: 'balance'}
             ],
-            order:[1,'asc']
+            order: [0, 'asc'],
+            pageLength: 'All',
+            paging: false
+
+
         });
 
     });
