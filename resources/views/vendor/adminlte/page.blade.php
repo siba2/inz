@@ -115,6 +115,7 @@
             <!-- Main content -->
             <section class="content">
 
+                @include('notifications')
                 @yield('content')
                 @include('modals')
 
