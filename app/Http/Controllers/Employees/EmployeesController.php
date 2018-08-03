@@ -39,28 +39,27 @@ class EmployeesController extends Controller {
         $model = $this->prepareDBquery($request, new Employees);
         $model->save();
 
-        return redirect()->to('employees');
+        return redirect()->to('employees')->with('success', trans('t_messages.content.success.add'));
     }
 
     public function update(UpdateEmployees $request) {
         $model = $this->prepareDBquery($request, Employees::find($request->id));
         $model->save();
 
-        return redirect()->to('employees');
+        return redirect()->to('employees')->with('success', trans('t_messages.content.success.edit'));
     }
 
     public function delete($id) {
         $model = Employees::find($id);
         $model->delete();
 
-        return redirect()->to('employees');
+        return redirect()->to('employees')->with('success', trans('t_messages.content.success.delete'));
     }
 
     public function getAll() {
         return Datatables::of(Employees::select()->get())
                         ->addColumn('manage', function ($giraffe) {
                             $id = $giraffe->id;
-                            $isDisabled = '';
                             $html = '<div class="btn-group">
                                         <a href="/employees/show/' . $id . '" type="button" class="btn btn-default"><i class="fa fa-search"></i></a>
                                         <a href="/employees/edit/' . $id . '" type="button" class="btn btn-default"><i class="fa fa-edit"></i></a>';

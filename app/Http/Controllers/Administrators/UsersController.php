@@ -44,7 +44,7 @@ class UsersController extends Controller {
             }
         }
 
-        return redirect()->to('administrators/users');
+        return redirect()->to('administrators/users')->with('success', trans('t_messages.content.success.add'));
     }
 
     public function edit($id) {
@@ -79,14 +79,14 @@ class UsersController extends Controller {
             }
         }
 
-        return redirect()->to('administrators/users');
+        return redirect()->to('administrators/users')->with('success', trans('t_messages.content.success.edit'));
     }
 
     public function delete($id) {
         $model = User::find($id);
         $model->delete();
 
-        return redirect()->to('administrators/users');
+        return redirect()->to('administrators/users')->with('success', trans('t_messages.content.success.delete'));
     }
 
     public function getAll() {

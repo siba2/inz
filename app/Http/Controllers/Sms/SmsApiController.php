@@ -90,14 +90,14 @@ class SmsApiController extends Controller {
             echo 'ERROR: ' . $exception->getMessage();
         }
 
-        return redirect()->to('smsapi');
+        return redirect()->to('smsapi')->with('success', trans('t_messages.content.success.add'));
     }
 
     public function delete($id) {
         $model = SmsApi::find($id);
         $model->delete();
 
-        return redirect()->to('smsapi');
+        return redirect()->to('smsapi')->with('success', trans('t_messages.content.success.delete'));
     }
 
     public function getAll() {

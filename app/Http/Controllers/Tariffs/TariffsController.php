@@ -32,14 +32,14 @@ class TariffsController extends Controller {
     public function edit($id) {
         $model = Tariffs::find($id);
 
-        return view('tariffs/edit')->with('model', $model);
+        return view('tariffs/edit')->with('model', $model)->with('success', trans('t_messages.content.success.edit'));
     }
 
     public function store(StoreTariff $request) {
         $model = $this->prepareDBquery($request, new Tariffs);
         $model->save();
 
-        return redirect()->to('tariffs');
+        return redirect()->to('tariffs')->with('success', trans('t_messages.content.success.edit'));
     }
 
     public function update(UpdateTariff $request) {
@@ -53,7 +53,7 @@ class TariffsController extends Controller {
         $model = Tariffs::find($id);
         $model->delete();
 
-        return redirect()->to('tariffs');
+        return redirect()->to('tariffs')->with('success', trans('t_messages.content.success.delete'));
     }
 
     public function getAll() {

@@ -13,6 +13,7 @@ return [
     'content.success.add'               => 'Pomyślnie dodano wpis',
     'content.success.edit'              => 'Pomyślnie zaktualizowano wpis',
     'content.success.delete'            => 'Pomyślnie usunięto wpis',
+    'header.success'                    => 'Komunikat',
     '' => '',
     '' => '',
     '' => '',

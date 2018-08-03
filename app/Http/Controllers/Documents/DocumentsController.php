@@ -32,13 +32,13 @@ class DocumentsController extends Controller {
             $data->move('_documents/' , $request->file("data")->getClientOriginalName());
         }
 
-        return redirect()->to('documents');
+        return redirect()->to('documents')->with('success', trans('t_messages.content.success.add'));
     }
 
     public function delete($name) {
         File::delete('_documents/' . $name);
 
-        return redirect()->to('documents');
+        return redirect()->to('documents')->with('success', trans('t_messages.content.success.delete'));
     }
 
     public function download($name) {

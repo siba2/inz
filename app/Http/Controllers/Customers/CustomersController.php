@@ -79,14 +79,14 @@ class CustomersController extends Controller {
         $model = $this->prepareDBquery($request, new Customers);
         $model->save();
 
-        return redirect()->to('customers');
+        return redirect()->to('customers')->with('success', trans('t_messages.content.success.add'));
     }
 
     public function update(UpdateCustomer $request) {
         $model = $this->prepareDBquery($request, Customers::find($request->id));
         $model->save();
 
-        return redirect()->to('customers');
+        return redirect()->to('customers')->with('success', trans('t_messages.content.success.edit'));
     }
 
     public function tariffs($id) {
@@ -113,7 +113,7 @@ class CustomersController extends Controller {
             }
         }
 
-        return redirect()->to('customers');
+        return redirect()->to('customers')->with('success', trans('t_messages.content.success.add'));
     }
 
     public function delete($id) {
@@ -129,7 +129,7 @@ class CustomersController extends Controller {
             $iptables->save();
         }
 
-        return redirect()->to('customers');
+        return redirect()->to('customers')->with('success', trans('t_messages.content.success.delete'));
     }
 
     public function getAll() {
@@ -224,7 +224,7 @@ class CustomersController extends Controller {
         $model->comment = $request->comment;
         $model->save();
 
-        return redirect()->to('customers');
+        return redirect()->to('customers')->with('success', trans('t_messages.content.success.add'));
     }
 
     public function listIp(Request $request) {
@@ -263,7 +263,7 @@ class CustomersController extends Controller {
         $newCash = $this->cashPrepareDBquery($request, new Cash);
         $newCash->save();
 
-        return redirect('customers/cash/' . $request->id)->with('model', $model)->with('cash', $cash);
+        return redirect('customers/cash/' . $request->id)->with('model', $model)->with('cash', $cash)->with('success', trans('t_messages.content.success.add'));
     }
 
     public function cashGetAll($id) {

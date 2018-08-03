@@ -23,7 +23,7 @@ class ScheduleController extends Controller {
         $model->title = $request->title;
         $model->save();
 
-        return redirect()->to('schedule');
+        return redirect()->to('schedule')->with('success', trans('t_messages.content.success.add'));
     }
 
     public function getAll() {

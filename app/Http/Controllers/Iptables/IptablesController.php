@@ -29,7 +29,7 @@ class IptablesController extends Controller {
         $model = $this->prepareDBquery($request, new IptablesClasses);
         $model->save();
 
-        return redirect()->to('iptables');
+        return redirect()->to('iptables')->with('success', trans('t_messages.content.success.add'));
     }
 
     private function prepareDBquery(Request $request, IptablesClasses $model) {
@@ -42,7 +42,7 @@ class IptablesController extends Controller {
         $model = IptablesClasses::find($id);
         $model->delete();
 
-        return redirect()->to('iptables');
+        return redirect()->to('iptables')->with('success', trans('t_messages.content.success.delete'));
     }
 
     public function getAll() {
@@ -87,7 +87,7 @@ class IptablesController extends Controller {
         $model = $this->nodePrepareDBquery($request, new Iptables);
         $model->save();
 
-        return redirect()->to('iptables/node/' . $request->id);
+        return redirect()->to('iptables/node/' . $request->id)->with('success', trans('t_messages.content.success.add'));
     }
 
     public function nodeDelete($id) {
@@ -95,7 +95,7 @@ class IptablesController extends Controller {
         $node = $model->id_iptable;
         $model->delete();
 
-        return redirect()->to('iptables/node/' . $node);
+        return redirect()->to('iptables/node/' . $node)->with('success', trans('t_messages.content.success.delete'));
     }
 
     public function nodeGetAll($id) {

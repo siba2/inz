@@ -69,14 +69,14 @@ class SerwersmsController extends Controller {
             return redirect()->to('serwersms');
         }
 
-        return redirect()->to('serwersms');
+        return redirect()->to('serwersms')->with('success', trans('t_messages.content.success.add'));
     }
 
     public function delete($id) {
         $model = SerwerSms::find($id);
         $model->delete();
 
-        return redirect()->to('serwersms');
+        return redirect()->to('serwersms')->with('success', trans('t_messages.content.success.delete'));
     }
 
     public function infoData(Request $request) {

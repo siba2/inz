@@ -45,7 +45,7 @@ class RolesController extends Controller {
             }
         }
 
-        return redirect()->to('administrators/roles');
+        return redirect()->to('administrators/roles')->with('success', trans('t_messages.content.success.add'));
     }
 
     public function edit($id) {
@@ -72,7 +72,7 @@ class RolesController extends Controller {
             }
         }
 
-        return redirect()->to('administrators/roles');
+        return redirect()->to('administrators/roles')->with('success', trans('t_messages.content.success.edit'));
     }
 
     public function delete($id) {
@@ -81,7 +81,7 @@ class RolesController extends Controller {
         $model = Role::find($id);
         $model->delete();
 
-        return redirect()->to('administrators/roles');
+        return redirect()->to('administrators/roles')->with('success', trans('t_messages.content.success.delete'));
     }
 
     public function getAll() {
