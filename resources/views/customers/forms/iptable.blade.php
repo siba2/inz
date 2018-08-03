@@ -3,13 +3,13 @@
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">{{ __('t_customers.iptable.config.header.central') }}</h3>
+                <h3 class="box-title">{{ __('t_customers.customers.iptable.config.header.iptable') }}</h3>
             </div>
             <!-- /.box-header -->
             {{ csrf_field() }}
             <div class="box-body">
                 <div class="form-group">
-                    <label for="class">{{ __('t_customers.customers.form.label.class') }}</label>
+                    <label for="class">{{ __('t_customers.customers.iptable.form.label.class') }}</label>
                     <select type="text" id="class" name="class" class="form-control">
                         @foreach($arrClass as $key => $class)
                         <option value="{{$key}}" @if($usedClass == $key) selected @endif >{{$class}}</option>
@@ -17,17 +17,17 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="ipaddr">{{ __('t_customers.customers.form.label.ipaddr') }}</label>
+                    <label for="ipaddr">{{ __('t_customers.customers.iptable.form.label.ipaddr') }}</label>
                     <select type="text" id="ipaddr" name="ipaddr" class="form-control">
                     </select>
                 </div>
                 <div class="form-group {{ ($errors->has('mac') ? 'has-error' : '') }}">
-                    <label for="mac">{{ __('t_customers.customers.form.label.mac') }}*</label>
+                    <label for="mac">{{ __('t_customers.customers.iptable.form.label.mac') }}*</label>
                     <input type="text" id="mac" name="mac" class="form-control" required value="{{ old('mac', (isset($iptables->mac) ? $iptables->mac : '')) }}">
                     @if ($errors->has('mac')) <span class="help-block">{{ $errors->first('mac') }}</span> @endif
                 </div> 
                 <div class="form-group {{ ($errors->has('comment') ? 'has-error' : '') }}">
-                    <label for="comment">{{ __('t_customers.customers.form.label.comment') }}</label>
+                    <label for="comment">{{ __('t_customers.customers.iptable.form.label.comment') }}</label>
                     <input type="text" id="comment" name="comment" class="form-control"  value="{{ old('comment', (isset($iptables->comment) ? $iptables->comment : '')) }}">
                     @if ($errors->has('comment')) <span class="help-block">{{ $errors->first('comment') }}</span> @endif
                 </div> 

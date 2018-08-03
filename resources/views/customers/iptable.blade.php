@@ -4,14 +4,14 @@
 
 @section('content_header')
 <h1>
-    {{ __('t_customers.iptable.content_header')}}
-    <small>{{ __('t_customers.iptable.content_header_small') }}</small>
+    {{ __('t_customers.customers.iptable.content_header')}}
+    <small>{{ __('t_customers.customers.iptable.content_header_small') }}</small>
 </h1>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> {{ __('t_common.breadcrumb') }}</a></li>
     <li><a href="/customers"><i class="fa fa-users" ></i> {{ __('t_customers.customers.index.breadcrumb') }}</a></li>
-    <li class="acvive">{{ __('t_customers.iptable.breadcrumb') }}</li>
+    <li class="acvive">{{ __('t_customers.customers.iptable.breadcrumb') }}</li>
 </ol>
 @stop
 

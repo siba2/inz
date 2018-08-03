@@ -33,5 +33,8 @@ return [
     'text_smsapi'                       => 'SMS API',
     
     'text_documents'                    => 'Dokumenty',
+    
+    'text_debtors'                      => 'Dłużnicy',
+    'text_system_password_reset'        => 'Reseuj hasło',
 
 ];

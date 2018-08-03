@@ -15,7 +15,6 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                {!! Html::decode(Html::linkRoute('customers.create', '<button type="button" class="btn btn-flat btn-primary">'.__("t_debtors.debtors.index.table.button.add").'</button>')) !!}
             </div>
             <div class="box-body">
                 <table id="table" class="table table-bordered table-hover"></table>

@@ -82,5 +82,19 @@ return [
     'customers.cash.form.label.name'            => 'Nazwa wpłaty',
     'customers.cash.form.currency'              => 'zł',
     
+    'customers.iptable.content_header'          => 'Klient',
+    'customers.iptable.content_header_small'    => 'Adres IP i MAC',
+    'customers.iptable.breadcrumb'              => 'Adres IP i MAC',
+    
+    'customers.iptable.config.header.iptable'   => 'Adres IP i MAC',
+    'customers.iptable.form.label.class'        => 'Klasa',
+    'customers.iptable.form.label.ipaddr'       => 'IP',
+    'customers.iptable.form.label.mac'          => 'MAC',
+    'customers.iptable.form.label.comment'      => 'Komentarz',
+    
+    
+    
+    
+    
     
 ];

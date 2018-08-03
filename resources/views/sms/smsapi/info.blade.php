@@ -24,7 +24,7 @@
                             <span class="info-box-icon bg-aqua"><i class="fa fa-envelope-o"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">{{ __('t_smsapi.smsapi.show.countSMS') }}</span>
+                                <span class="info-box-text">{{ __('t_smsapi.smsapi.info.countsms') }}</span>
                                 <span class="info-box-number">{{$count}}</span>
                             </div>
                             <!-- /.info-box-content -->
@@ -37,8 +37,8 @@
                             <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
 
                             <div class="info-box-content">
-                                <span class="info-box-text">{{ __('t_smsapi.smsapi.show.pkt') }}</span>
-                                <span class="info-box-number">{{$points}} {{ __('t_smsapi.smsapi.show.pkt') }}</span>
+                                <span class="info-box-text">{{ __('t_smsapi.smsapi.info.label.pkt') }}</span>
+                                <span class="info-box-number">{{$points}} {{ __('t_smsapi.smsapi.info.pkt') }}</span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
@@ -70,7 +70,7 @@
             <option value="{{$year->year}}" >{{$year->year}}</option>
             @endforeach           
         </select>
-        <center><h3 class="box-title">{{ __('t_smsapi.smsapi.show.') }}</h3></center>
+        <center><h3 class="box-title">{{ __('t_smsapi.smsapi.info.sms') }}</h3></center>
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>

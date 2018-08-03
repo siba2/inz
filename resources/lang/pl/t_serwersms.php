@@ -18,9 +18,10 @@ return [
     'serwersms.form.header.serwersms'       => 'Bramka sms',
     'serwersms.form.label.phone'            => 'Telefon',
     'serwersms.form.label.text'             => 'Wiadomość',
-    '' => '',
-    '' => '',
-    '' => '',
+    
+    'serwersms.info.countsms'               => 'Liczba wysłanych widomośći',
+    'serwersms.info.pkt'                    => 'Smsy do wykorzystania',
+    'serwersms.info.sms'                    => 'Smsy',
     '' => '',
     '' => '',
     '' => '',
