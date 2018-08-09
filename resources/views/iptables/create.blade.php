@@ -9,7 +9,7 @@
 </h1>
 <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> {{ __('t_common.breadcrumb') }}</a></li>
-    <li><a href="/iptables"><i class="fa fa-users"></i> {{ __('t_iptables.iptables.index.breadcrumb') }}</a></li>
+    <li><a href="/iptables"><i class="fa fa-globe"></i> {{ __('t_iptables.iptables.index.breadcrumb') }}</a></li>
     <li class="active">{{ __('t_iptables.iptables.create.breadcrumb') }}</li>
 </ol>
 @stop

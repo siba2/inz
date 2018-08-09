@@ -85,6 +85,7 @@ return [
     'customers.iptable.content_header'          => 'Klient',
     'customers.iptable.content_header_small'    => 'Adres IP i MAC',
     'customers.iptable.breadcrumb'              => 'Adres IP i MAC',
+    'customers.iptable.title_postfix'           => 'Adres IP i MAC',
     
     'customers.iptable.config.header.iptable'   => 'Adres IP i MAC',
     'customers.iptable.form.label.class'        => 'Klasa',

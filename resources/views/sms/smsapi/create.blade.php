@@ -9,7 +9,7 @@
 </h1>
 <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> {{ __('t_common.breadcrumb') }}</a></li>
-    <li><a href="/smsapi"><i class="fa fa-male"></i> {{ __('t_smsapi.smsapi.index.breadcrumb') }}</a></li>
+    <li><a href="/smsapi"><i class="fa fa-envelope"></i> {{ __('t_smsapi.smsapi.index.breadcrumb') }}</a></li>
     <li class="active">{{ __('t_smsapi.smsapi.create.breadcrumb') }}</li>
 </ol>
 @stop

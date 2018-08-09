@@ -9,7 +9,7 @@
 </h1>
 <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> {{ __('t_common.breadcrumb') }}</a></li>
-    <li><a href="/serwersms"><i class="fa fa-male"></i> {{ __('t_serwersms.serwersms.index.breadcrumb') }}</a></li>
+    <li><a href="/serwersms"><i class="fa fa-envelope"></i> {{ __('t_serwersms.serwersms.index.breadcrumb') }}</a></li>
     <li class="active">{{ __('t_serwersms.serwersms.create.breadcrumb') }}</li>
 </ol>
 @stop

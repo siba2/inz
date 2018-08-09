@@ -6,6 +6,7 @@
 <h1>{{ __('t_customers.customers.cash.content_header') }}</h1>
 <ol class="breadcrumb">
     <li><a href="/home"><i class="fa fa-dashboard"></i> {{ __('t_common.breadcrumb') }}</a></li>
+    <li><a href="/customers"><i class="fa fa-users"></i> {{ __('t_customers.customers.index.breadcrumb') }}</a></li>
     <li class="active">{{ __('t_customers.customers.cash.breadcrumb') }}</li>   
 </ol>
 @stop

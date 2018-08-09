@@ -68,7 +68,7 @@ class AppServiceProvider extends ServiceProvider {
 
                 $event->menu->add([
                     'text' => trans('t_menu.header.text_iptables_sub'),
-                    'icon' => '',
+                    'icon' => 'globe',
                     'submenu' => $arr,
                 ]);
             }
@@ -95,7 +95,7 @@ class AppServiceProvider extends ServiceProvider {
                 $event->menu->add(trans('t_menu.header.text_sms'));
                 $event->menu->add([
                     'text' => trans('t_menu.header.text_sms_sub'),
-                    'icon' => 'calendar',
+                    'icon' => 'envelope',
                     'submenu' => [
                         [
                             'text' => trans('t_menu.text_serwersms'),

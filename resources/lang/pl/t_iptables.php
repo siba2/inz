@@ -12,7 +12,7 @@ return [
     'iptables.create.breadcrumb'            => 'Dodaj klase',
     'iptables.create.title_postfix'         => 'Iptables',
        
-    'iptables.form.header.central'          => 'Dodaj klase',
+    'iptables.form.header.central'          => 'Dodaj IP',
     'iptables.form.label.class'             => 'Klasa',
     
     'iptables.node.content_header'          => 'Klasa',
@@ -22,8 +22,9 @@ return [
     
     'iptables.node.content_header'          => 'Klasa',
     'iptables.node.content_header_small'    => 'Dodaj IP',
-    'iptables.node.breadcrumb'              => 'Dodaj IP',
-    'iptables.node.creaetitle_postfix'      => 'Klasa',
+    'iptables.node.breadcrumb'              => 'Klasa',
+    'iptables.node.create.title_postfix'    => 'Klasa',
+    'iptables.node.create.breadcrumb'       => 'Dodaj IP',
     
     'iptables.node.form.header.central'     => 'Dodaj IP',
     'iptables.node.form.label.ipaddr'       => 'Adress IP',

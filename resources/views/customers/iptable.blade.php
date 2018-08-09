@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title_postfix', ' | '.trans('t_customers.iptable.title_postfix'))
+@section('title_postfix', ' | '.trans('t_customers.customers.iptable.title_postfix'))
 
 @section('content_header')
 <h1>

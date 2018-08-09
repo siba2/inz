@@ -7,7 +7,8 @@
 <h1>{{ __('t_serwersms.serwersms.content_header') }}</h1>
 <ol class="breadcrumb">
     <li><a href="/home"><i class="fa fa-dashboard"></i> {{ __('t_common.breadcrumb') }}</a></li>
-    <li class="active">{{ __('t_serwersms.serwersms.index.breadcrumb') }}</li>   
+    <li><a href="/serwersms"><i class="fa fa-envelope"></i> {{ __('t_serwersms.serwersms.index.breadcrumb') }}</a></li>
+    <li class="active">{{ __('t_serwersms.serwersms.info.breadcrumb') }}</li>   
 </ol>
 @stop
 
