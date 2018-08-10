@@ -30,7 +30,7 @@ class UpdateUsers extends FormRequest
         return [
             'name' => 'required|unique:users,name,' . $request->id,
             'email' => 'required|email|unique:users,email,' . $request->id,
-            'password'      => 'required|confirmed',
+            'password'      => 'confirmed',
         ];
     }
 }

@@ -24,7 +24,7 @@ class ResetPasswordController extends Controller
         $password_confirmation = $request->password_confirmation;
         
         if (empty($password) || empty($password_confirmation) || $email != Auth::user()->email || $password != $password_confirmation) {
-            return redirect()->back()->with('error', __('auth.password_reset.invalid_credentials'));
+            return redirect()->back()->with('error', __('t_auth.password_reset.invalid_credentials'));
         }
         
         $user = User::find(Auth::user()->id);

@@ -52,6 +52,13 @@
                     class="btn btn-primary btn-block btn-flat"
                     >{{ trans('adminlte::adminlte.reset_password') }}</button>
         </form>
+         <div class="text-center mt-3" style="margin-top: 10px;">
+            @if ($message = Session::get('error'))
+            <span class="label label-danger" style="font-size: 12px;">
+                {{ $message }}
+            </span>
+            @endif
+        </div>
     </div>
     <!-- /.login-box-body -->
 </div><!-- /.login-box -->

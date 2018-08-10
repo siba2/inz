@@ -85,7 +85,7 @@ class UsersController extends Controller {
     public function delete($id) {
         $model = User::find($id);
         $model->delete();
-
+        
         return redirect()->to('administrators/users')->with('success', trans('t_messages.content.success.delete'));
     }
 
@@ -110,8 +110,11 @@ class UsersController extends Controller {
     public function prepareDBquery(Request $request, User $model) {
         $model->name = $request->name;
         $model->email = $request->email;
-        $model->password = bcrypt($request->password);
         $model->config_id = '1';
+        
+        if ($request->password) {
+            $model->password = bcrypt($request->password);
+        }
 
         return $model;
     }
