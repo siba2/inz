@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'INŻ',
+    'title' => 'ETLINE',
 
     'title_prefix' => '',
 
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>INŻ</b>',
+    'logo' => '<b>ETLINE</b>',
 
     'logo_mini' => '<b></b>',
 
