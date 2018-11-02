@@ -52,7 +52,7 @@ class SerwersmsController extends Controller {
             $result = $serwersms->messages->sendSms(
                     array(
                 '+48' . $request->phone
-                    ), $request->text, 'TEST', array(
+                    ), $request->text, 'ETLINE', array(
                 'details' => true,
                     )
             );

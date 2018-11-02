@@ -74,7 +74,7 @@ class SmsApiController extends Controller {
 
             $actionSend->setTo($request->phone);
             $actionSend->setText($request->text);
-            $actionSend->setSender('Info');
+            $actionSend->setSender('ETLINE');
 
             $response = $actionSend->execute();
 
