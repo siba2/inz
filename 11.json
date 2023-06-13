@@ -1,0 +1,13 @@
+{
+    "success": true,
+    "queued": 1,
+    "items": [{
+        "id": "cfd32423",
+        "phone": 5434324334,
+        "status": "queued",
+        "queued": true,
+        "parts": 1,
+        "text": "To jest wiadomosc"
+   }]
+   
+}

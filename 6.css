@@ -1,0 +1,38 @@
+body {
+    padding-left: 1px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: red;
+    background-color: #d8da3d;
+}
+
+ul.navbar {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 2px;
+    left: 1px;
+}
+
+h1 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul.navbar li {
+    background-color: wheat;
+    margin: 7px;
+    padding: 5px;
+    border-left: solid;
+}
+
+ul.navbar a {
+    text-decoration: dashed;
+}
+
+a.link {
+    color: bisque;
+}
+
+a:visited {
+    color: aliceblue;
+}
